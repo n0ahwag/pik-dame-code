@@ -309,3 +309,6 @@ input { font: inherit; }
 
 .modal.wide { max-width: 700px; }
 .modal .sub-ok { color: var(--gold); letter-spacing: .12em; text-transform: uppercase; font-size: .78rem; font-weight: 700; margin: 0 0 10px; }
+
+/* Notizzettel dürfen sich nie bewegen (Schutz gegen Animations-Namenskollisionen) */
+.paper, .paper.note, .story, .you, .waitnote { animation: none !important; opacity: 1 !important; transform: none !important; }
