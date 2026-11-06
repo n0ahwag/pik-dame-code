@@ -109,7 +109,7 @@
           <circle cx="75" cy="288" r="17" fill="#222"/><circle cx="75" cy="288" r="7" fill="#999"/><circle cx="220" cy="288" r="17" fill="#222"/><circle cx="220" cy="288" r="7" fill="#999"/>
           <text x="145" y="276" text-anchor="middle" font-size="11" font-family="Inter" font-weight="700" fill="#fff">+ Luis & Freundin an Bord</text>
         </g></g>
-        <text class="note" x="160" y="160" font-size="24" fill="#ffd76b">♪</text><text class="note" style="animation-delay:.9s" x="220" y="150" font-size="24" fill="#ff8fb1">♫</text>`
+        <text class="mnote" x="160" y="160" font-size="24" fill="#ffd76b">♪</text><text class="mnote" style="animation-delay:.9s" x="220" y="150" font-size="24" fill="#ff8fb1">♫</text>`
     },
     beach: {
       cap: 'Alles begann im April. Beachvolleyball im Sand. 🏐',
@@ -130,7 +130,7 @@
         ${Array.from({ length: 25 }, (_, i) => `<rect class="tileb" style="animation-delay:${(i * 0.13) % 1}s" x="${150 + (i % 5) * 60}" y="${262 + Math.floor(i / 5) * 16}" width="56" height="13" fill="#ff4d6a"/>`).join('')}
         ${actor('noah', 250, 270, { pose: 'dance', anim: 'bob .45s ease-in-out infinite alternate' })}
         ${actor('lauri', 350, 270, { pose: 'dance', flip: true, anim: 'bob .45s .22s ease-in-out infinite alternate' })}
-        <text class="note" x="200" y="120" font-size="26" fill="#d9ad5b">♪</text><text class="note" style="animation-delay:.8s" x="400" y="110" font-size="26" fill="#ff8fb1">♫</text>
+        <text class="mnote" x="200" y="120" font-size="26" fill="#d9ad5b">♪</text><text class="mnote" style="animation-delay:.8s" x="400" y="110" font-size="26" fill="#ff8fb1">♫</text>
         <text x="300" y="200" text-anchor="middle" font-size="44" fill="#fff" opacity=".9" class="pulse">♠</text>`
     },
     3: {
@@ -268,26 +268,26 @@
   .scene svg{display:block;width:100%;height:auto}
   .scene .mv,.scene .pp,.scene .pp *{transform-box:fill-box}
   .scene .leg,.scene .arm{transform-origin:50% 5%}
-  .pp.walking .ll{animation:swing .5s ease-in-out infinite alternate}
-  .pp.walking .lr{animation:swing .5s ease-in-out infinite alternate-reverse}
-  .pp.walking .al{animation:swing .5s ease-in-out infinite alternate-reverse}
-  .pp.walking .ar{animation:swing .5s ease-in-out infinite alternate}
-  .pp.hold2 .al,.pp.hold .ar{animation:none;transform:rotate(-35deg)}
-  .pp.dance .al{animation:armup .45s ease-in-out infinite alternate}
-  .pp.dance .ar{animation:armup2 .45s ease-in-out infinite alternate}
-  .pp.jump1 .al,.pp.jump1 .ar{transform:rotate(180deg)}
-  .pp.jump1 .ar{transform:rotate(-180deg)}
-  .pp.cheer .al{transform:rotate(160deg)} .pp.cheer .ar{transform:rotate(-160deg)}
-  .pp.waving .ar{animation:wave .4s ease-in-out infinite alternate}
-  .pp.phone .ar{transform:rotate(-120deg)}
-  .pp.stretch .al{transform:rotate(170deg)} .pp.stretch .ar{transform:rotate(-170deg)}
-  .pp.yawn .ar{transform:rotate(-150deg)} .pp.yawn .mouth{d:path("M-4,-104 Q0,-98 4,-104 Q0,-110 -4,-104")}
-  .pp.shock .al{transform:rotate(130deg)} .pp.shock .ar{transform:rotate(-130deg)} .pp.shock .mouth{d:path("M-4,-104 Q0,-97 4,-104 Q0,-109 -4,-104")}
-  .pp.flowers .ar{transform:rotate(-80deg)}
-  .pp.arms .al{transform:rotate(25deg)} .pp.arms .ar{transform:rotate(-25deg)}
-  .pp.eat .ar{animation:eat 1s ease-in-out infinite alternate}
-  .pp.hug .ar{transform:rotate(-80deg)} .pp.hug .al{transform:rotate(-60deg)}
-  .eye{animation:blink 4s infinite;transform-origin:center}
+  .scene .pp.walking .ll{animation:swing .5s ease-in-out infinite alternate}
+  .scene .pp.walking .lr{animation:swing .5s ease-in-out infinite alternate-reverse}
+  .scene .pp.walking .al{animation:swing .5s ease-in-out infinite alternate-reverse}
+  .scene .pp.walking .ar{animation:swing .5s ease-in-out infinite alternate}
+  .scene .pp.hold2 .al,.scene .pp.hold .ar{animation:none;transform:rotate(-35deg)}
+  .scene .pp.dance .al{animation:armup .45s ease-in-out infinite alternate}
+  .scene .pp.dance .ar{animation:armup2 .45s ease-in-out infinite alternate}
+  .scene .pp.jump1 .al,.scene .pp.jump1 .ar{transform:rotate(180deg)}
+  .scene .pp.jump1 .ar{transform:rotate(-180deg)}
+  .scene .pp.cheer .al{transform:rotate(160deg)} .scene .pp.cheer .ar{transform:rotate(-160deg)}
+  .scene .pp.waving .ar{animation:wave .4s ease-in-out infinite alternate}
+  .scene .pp.phone .ar{transform:rotate(-120deg)}
+  .scene .pp.stretch .al{transform:rotate(170deg)} .scene .pp.stretch .ar{transform:rotate(-170deg)}
+  .scene .pp.yawn .ar{transform:rotate(-150deg)} .scene .pp.yawn .mouth{d:path("M-4,-104 Q0,-98 4,-104 Q0,-110 -4,-104")}
+  .scene .pp.shock .al{transform:rotate(130deg)} .scene .pp.shock .ar{transform:rotate(-130deg)} .scene .pp.shock .mouth{d:path("M-4,-104 Q0,-97 4,-104 Q0,-109 -4,-104")}
+  .scene .pp.flowers .ar{transform:rotate(-80deg)}
+  .scene .pp.arms .al{transform:rotate(25deg)} .scene .pp.arms .ar{transform:rotate(-25deg)}
+  .scene .pp.eat .ar{animation:eat 1s ease-in-out infinite alternate}
+  .scene .pp.hug .ar{transform:rotate(-80deg)} .scene .pp.hug .al{transform:rotate(-60deg)}
+  .scene .eye{animation:blink 4s infinite;transform-origin:center}
   @keyframes swing{from{transform:rotate(-22deg)}to{transform:rotate(22deg)}}
   @keyframes armup{from{transform:rotate(140deg)}to{transform:rotate(175deg)}}
   @keyframes armup2{from{transform:rotate(-175deg)}to{transform:rotate(-140deg)}}
@@ -300,44 +300,44 @@
   @keyframes slidein{from{transform:translateX(200px)}to{transform:translateX(0)}}
   @keyframes meetL{from{transform:translateX(-200px)}to{transform:translateX(40px)}}
   @keyframes meetR{from{transform:translateX(200px)}to{transform:translateX(-40px)}}
-  .hfloat{opacity:0;animation:hf 2.6s ease-out infinite}
+  .scene .hfloat{opacity:0;animation:hf 2.6s ease-out infinite}
   @keyframes hf{0%{opacity:0;transform:translateY(20px) scale(.4)}20%{opacity:1}100%{opacity:0;transform:translateY(-70px) scale(1.2)}}
-  .twinkle{animation:tw 2s ease-in-out infinite alternate} @keyframes tw{from{opacity:.2}to{opacity:1}}
-  .dash{stroke-dashoffset:200;animation:dash 3s linear infinite} @keyframes dash{to{stroke-dashoffset:0}}
-  .sig{animation:pop .5s 1s both}
-  .sun{animation:pulse 2s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
-  .pulse{animation:pulse .45s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+  .scene .twinkle{animation:tw 2s ease-in-out infinite alternate} @keyframes tw{from{opacity:.2}to{opacity:1}}
+  .scene .dash{stroke-dashoffset:200;animation:dash 3s linear infinite} @keyframes dash{to{stroke-dashoffset:0}}
+  .scene .sig{animation:pop .5s 1s both}
+  .scene .sun{animation:pulse 2s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+  .scene .pulse{animation:pulse .45s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
   @keyframes pulse{from{transform:scale(1)}to{transform:scale(1.12)}}
-  .ball{animation:ball 1.2s ease-in-out infinite alternate}
+  .scene .ball{animation:ball 1.2s ease-in-out infinite alternate}
   @keyframes ball{0%{transform:translate(200px,180px)}50%{transform:translate(300px,70px)}100%{transform:translate(400px,180px)}}
-  .cupid{animation:cupid 3s ease-in-out infinite alternate} @keyframes cupid{from{transform:translate(0,0)}to{transform:translate(380px,20px)}}
-  .beam{animation:beam 1.6s ease-in-out infinite alternate} @keyframes beam{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
-  .tileb{animation:tile .9s steps(2) infinite} @keyframes tile{0%{fill:#ff4d6a}50%{fill:#7b2cff}100%{fill:#d9ad5b}}
-  .note{animation:note 2s ease-out infinite} @keyframes note{from{transform:translateY(0);opacity:1}to{transform:translateY(-80px);opacity:0}}
-  .walkacross{animation:across 6s linear both} @keyframes across{from{transform:translateX(-80px)}to{transform:translateX(470px)}}
-  .walkslow{animation:across2 7s linear both} @keyframes across2{from{transform:translateX(-60px)}to{transform:translateX(560px)}}
-  .rise{animation:rise 3s ease-out both;transform-box:fill-box} @keyframes rise{from{transform:translateY(80px)}to{transform:translateY(0)}}
-  .zz{animation:note 2.4s ease-out infinite}
-  .msg1{animation:msg1 3s ease-in-out infinite} @keyframes msg1{0%{transform:translate(140px,150px);opacity:0}15%{opacity:1}60%{transform:translate(360px,120px);opacity:1}70%,100%{opacity:0;transform:translate(380px,120px)}}
-  .msg2{animation:msg2 3s 1.5s ease-in-out infinite;opacity:0} @keyframes msg2{0%{transform:translate(380px,180px);opacity:0}15%{opacity:1}60%{transform:translate(160px,150px);opacity:1}70%,100%{opacity:0;transform:translate(140px,150px)}}
-  .tree{animation:sway 3s ease-in-out infinite alternate} @keyframes sway{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}
-  .leaf{animation:leaf 5s linear infinite} @keyframes leaf{from{transform:translate(0,0) rotate(0)}to{transform:translate(-60px,340px) rotate(360deg)}}
-  .cue{animation:cue 1.6s ease-in both} @keyframes cue{from{transform:translate(170px,250px)}to{transform:translate(380px,220px)}}
-  .b8{animation:b8 1.2s 1.4s ease-out both;transform:translate(390px,218px)} @keyframes b8{from{transform:translate(390px,218px)}to{transform:translate(462px,204px) scale(.3)}}
-  .bball{animation:bball 1.4s ease-in both} @keyframes bball{from{transform:translate(300px,330px) scale(1.4)}to{transform:translate(300px,150px) scale(.6)}}
-  .pin{animation:pin .6s ease-out both} @keyframes pin{from{transform:rotate(0)}to{transform:rotate(80deg) translateY(-6px);opacity:.3}}
-  .pop{animation:pop .5s both;transform-box:fill-box;transform-origin:center}
-  .plane{animation:plane 4s ease-in both} @keyframes plane{from{transform:translate(180px,260px) rotate(-10deg) scale(.6)}to{transform:translate(560px,20px) rotate(-25deg) scale(.25)}}
-  .tear{animation:note 2s 1.5s ease-in infinite;opacity:0}
-  .doorleaf{animation:door 1s .8s ease-in-out both;transform-box:fill-box;transform-origin:0 50%} @keyframes door{to{transform:scaleX(.1)}}
-  .wave{animation:wv 2s ease-in-out infinite alternate} @keyframes wv{to{transform:translateX(-20px)}}
-  .steam{animation:note 2s ease-out infinite}
-  .car{animation:car 3.4s cubic-bezier(.3,.7,.4,1) both} @keyframes car{from{transform:translateX(-300px)}to{transform:translateX(150px)}}
-  .lane{stroke-dasharray:0}
-  .die1{animation:die1 1.4s ease-out both} @keyframes die1{from{transform:translate(260px,150px) rotate(0)}to{transform:translate(285px,222px) rotate(540deg)}}
-  .die2{animation:die2 1.4s .2s ease-out both} @keyframes die2{from{transform:translate(340px,150px) rotate(0)}to{transform:translate(318px,222px) rotate(-450deg)}}
-  .env{animation:env 2.6s ease-in-out both} @keyframes env{0%{transform:translate(130px,220px) scale(.3) rotate(-20deg)}60%{transform:translate(300px,110px) scale(1) rotate(5deg)}100%{transform:translate(300px,150px) scale(1) rotate(0)}}
-  .shoot{animation:shoot 3s 1s ease-in infinite;opacity:0} @keyframes shoot{0%{transform:translate(80px,30px);opacity:0}10%{opacity:1}40%{transform:translate(260px,90px);opacity:0}100%{opacity:0}}
+  .scene .cupid{animation:cupid 3s ease-in-out infinite alternate} @keyframes cupid{from{transform:translate(0,0)}to{transform:translate(380px,20px)}}
+  .scene .beam{animation:beam 1.6s ease-in-out infinite alternate} @keyframes beam{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
+  .scene .tileb{animation:tile .9s steps(2) infinite} @keyframes tile{0%{fill:#ff4d6a}50%{fill:#7b2cff}100%{fill:#d9ad5b}}
+  .scene .mnote{animation:note 2s ease-out infinite} @keyframes note{from{transform:translateY(0);opacity:1}to{transform:translateY(-80px);opacity:0}}
+  .scene .walkacross{animation:across 6s linear both} @keyframes across{from{transform:translateX(-80px)}to{transform:translateX(470px)}}
+  .scene .walkslow{animation:across2 7s linear both} @keyframes across2{from{transform:translateX(-60px)}to{transform:translateX(560px)}}
+  .scene .rise{animation:rise 3s ease-out both;transform-box:fill-box} @keyframes rise{from{transform:translateY(80px)}to{transform:translateY(0)}}
+  .scene .zz{animation:note 2.4s ease-out infinite}
+  .scene .msg1{animation:msg1 3s ease-in-out infinite} @keyframes msg1{0%{transform:translate(140px,150px);opacity:0}15%{opacity:1}60%{transform:translate(360px,120px);opacity:1}70%,100%{opacity:0;transform:translate(380px,120px)}}
+  .scene .msg2{animation:msg2 3s 1.5s ease-in-out infinite;opacity:0} @keyframes msg2{0%{transform:translate(380px,180px);opacity:0}15%{opacity:1}60%{transform:translate(160px,150px);opacity:1}70%,100%{opacity:0;transform:translate(140px,150px)}}
+  .scene .tree{animation:sway 3s ease-in-out infinite alternate} @keyframes sway{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}
+  .scene .leaf{animation:leaf 5s linear infinite} @keyframes leaf{from{transform:translate(0,0) rotate(0)}to{transform:translate(-60px,340px) rotate(360deg)}}
+  .scene .cue{animation:cue 1.6s ease-in both} @keyframes cue{from{transform:translate(170px,250px)}to{transform:translate(380px,220px)}}
+  .scene .b8{animation:b8 1.2s 1.4s ease-out both;transform:translate(390px,218px)} @keyframes b8{from{transform:translate(390px,218px)}to{transform:translate(462px,204px) scale(.3)}}
+  .scene .bball{animation:bball 1.4s ease-in both} @keyframes bball{from{transform:translate(300px,330px) scale(1.4)}to{transform:translate(300px,150px) scale(.6)}}
+  .scene .pin{animation:pin .6s ease-out both} @keyframes pin{from{transform:rotate(0)}to{transform:rotate(80deg) translateY(-6px);opacity:.3}}
+  .scene .pop{animation:pop .5s both;transform-box:fill-box;transform-origin:center}
+  .scene .plane{animation:plane 4s ease-in both} @keyframes plane{from{transform:translate(180px,260px) rotate(-10deg) scale(.6)}to{transform:translate(560px,20px) rotate(-25deg) scale(.25)}}
+  .scene .tear{animation:note 2s 1.5s ease-in infinite;opacity:0}
+  .scene .doorleaf{animation:door 1s .8s ease-in-out both;transform-box:fill-box;transform-origin:0 50%} @keyframes door{to{transform:scaleX(.1)}}
+  .scene .wave{animation:wv 2s ease-in-out infinite alternate} @keyframes wv{to{transform:translateX(-20px)}}
+  .scene .steam{animation:note 2s ease-out infinite}
+  .scene .car{animation:car 3.4s cubic-bezier(.3,.7,.4,1) both} @keyframes car{from{transform:translateX(-300px)}to{transform:translateX(150px)}}
+  .scene .lane{stroke-dasharray:0}
+  .scene .die1{animation:die1 1.4s ease-out both} @keyframes die1{from{transform:translate(260px,150px) rotate(0)}to{transform:translate(285px,222px) rotate(540deg)}}
+  .scene .die2{animation:die2 1.4s .2s ease-out both} @keyframes die2{from{transform:translate(340px,150px) rotate(0)}to{transform:translate(318px,222px) rotate(-450deg)}}
+  .scene .env{animation:env 2.6s ease-in-out both} @keyframes env{0%{transform:translate(130px,220px) scale(.3) rotate(-20deg)}60%{transform:translate(300px,110px) scale(1) rotate(5deg)}100%{transform:translate(300px,150px) scale(1) rotate(0)}}
+  .scene .shoot{animation:shoot 3s 1s ease-in infinite;opacity:0} @keyframes shoot{0%{transform:translate(80px,30px);opacity:0}10%{opacity:1}40%{transform:translate(260px,90px);opacity:0}100%{opacity:0}}
   .scap{font-family:Caveat,cursive;font-size:1.7rem;line-height:1.15;margin:14px 0 6px;min-height:2.2em}
   .scap span{opacity:0;animation:fadein .05s forwards}
   @keyframes fadein{to{opacity:1}}
