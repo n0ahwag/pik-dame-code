@@ -280,7 +280,7 @@ input { font: inherit; }
 /* final */
 .hold { width: 180px; height: 180px; border-radius: 50%; border: 0; margin: 10px auto; display: block; color: #fff; font-weight: 700;
   background: radial-gradient(circle at 40% 35%, #ff6e86, #b3102b); box-shadow: 0 0 0 8px rgba(209,31,60,.2), 0 20px 50px -10px var(--red);
-  touch-action: none; user-select: none; -webkit-user-select: none; }
+  touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
 .hold.down { transform: scale(.95); box-shadow: 0 0 0 14px rgba(217,173,91,.35), 0 0 60px var(--gold); }
 .holdbar { height: 12px; background: var(--line); border-radius: 999px; overflow: hidden; max-width: 320px; margin: 10px auto; }
 .holdbar div { height: 100%; width: 0; background: linear-gradient(90deg, var(--red), var(--gold)); }

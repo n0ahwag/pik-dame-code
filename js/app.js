@@ -1016,6 +1016,7 @@
               <button class="hold" id="hold">GEDRÜCKT<br>HALTEN</button>
               <div class="holdbar"><div id="hb"></div></div>
               <p class="small" id="hs"></p></div>`;
+            setTimeout(() => { try { zone.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {} }, 300);
             const b = $('#hold', zone);
             const down = e => { e.preventDefault(); if (holding) return; holding = true; b.classList.add('down'); set('hold/' + S.me, { d: true, t: Date.now() }); };
             const up = () => { if (!holding) return; holding = false; b.classList.remove('down'); set('hold/' + S.me, { d: false, t: Date.now() }); };
@@ -1058,7 +1059,7 @@
         <div class="roombox"><span class="muted">Raumcode</span><input id="room" value="${S.room}" maxlength="32"><span class="muted small">(muss bei euch beiden gleich sein)</span></div>
         <button class="btn gold" id="go" ${S.me ? '' : 'disabled'}>Raum betreten →</button>
         <p class="muted small" style="margin-top:28px">Ruft euch an, bevor ihr startet. Ihr werdet viel reden müssen. 📞<br>
-        Jeder sieht nur seinen eigenen Bildschirm, also nicht schummeln. 😉 Dauer: ca. 2 Stunden.</p>
+        Jeder sieht nur seinen eigenen Bildschirm, also nicht schummeln. 😉 Dauer: ca. 2 bis 2,5 Stunden.</p>
       </div>`;
     $$('.pick button').forEach(b => b.onclick = () => {
       S.me = b.dataset.p; $$('.pick button').forEach(x => x.classList.toggle('sel', x === b)); $('#go').disabled = false;
@@ -1148,7 +1149,7 @@
     b.onclick = () => {
       const lvl = get('hint/' + n, 0);
       const q = lvl === 2 ? 'Wirklich die LÖSUNG anzeigen? Sie wird auch bei ' + NAME[other()] + ' angezeigt.' : 'Tipp anzeigen? Er wird auch bei ' + NAME[other()] + ' angezeigt.';
-      if (confirm(q)) set('hint/' + n, lvl + 1);
+      ask(q, () => set('hint/' + n, get('hint/' + n, 0) + 1));
     };
   }
   function refreshHints() {
@@ -1178,7 +1179,7 @@
       $('#m-close').onclick = hideModal;
       $('#m-switch').onclick = () => { hideModal(); Net.disconnect(); S.joined = false; location.reload(); };
       $('#m-reset').onclick = () => {
-        if (confirm('Wirklich alles zurücksetzen? Der Fortschritt geht für euch BEIDE verloren.')) { Net.set('epoch', (Net.get('epoch', 0) || 0) + 1); hideModal(); }
+        ask('Wirklich alles zurücksetzen? Der Fortschritt geht für euch BEIDE verloren.', () => { Net.set('epoch', (Net.get('epoch', 0) || 0) + 1); });
       };
     };
   }
@@ -1258,6 +1259,13 @@
     addCleanup(() => clearInterval(iv));
   }
 
+  // Eigene Ja/Nein-Abfrage (statt confirm, das manche In-App-Browser blockieren)
+  function ask(q, yes) {
+    showModal(`<p style="margin-top:0">${q}</p><div class="row" style="justify-content:center;margin-top:16px">
+      <button class="btn ghost" id="ask-no">Abbrechen</button><button class="btn gold" id="ask-yes">Ja</button></div>`);
+    $('#ask-no').onclick = hideModal;
+    $('#ask-yes').onclick = () => { hideModal(); yes(); };
+  }
   function showModal(html, wide) { const o = $('#overlay'); o.innerHTML = `<div class="modal ${wide ? 'wide' : ''}">${html}</div>`; o.hidden = false; }
   function hideModal() { const o = $('#overlay'); o.hidden = true; o.innerHTML = ''; }
 

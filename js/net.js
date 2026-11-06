@@ -54,6 +54,27 @@
     clients.forEach(c => { if (c.connected) c.publish(base + key, payload, { retain, qos: 0 }); });
   }
 
+  // Eigene Zustände lokal sichern, damit beim Neuladen nichts verloren geht
+  function lsKey() { return 'pdnet_' + base + me; }
+  function saveMine() {
+    try {
+      const mine = {};
+      Object.keys(store).forEach(k => { if (store[k].from === me) mine[k] = store[k]; });
+      localStorage.setItem(lsKey(), JSON.stringify(mine));
+    } catch (e) {}
+  }
+  function loadMine() {
+    try {
+      const mine = JSON.parse(localStorage.getItem(lsKey()) || '{}');
+      Object.keys(mine).forEach(k => {
+        const m = mine[k];
+        if (!m || typeof m.seq !== 'number') return;
+        lastSeq = Math.max(lastSeq, m.seq);
+        if (!store[k] || store[k].seq < m.seq) { store[k] = m; emit(k, m.v, m); }
+      });
+    } catch (e) {}
+  }
+
   function resendMine() {
     Object.keys(store).forEach(k => { if (store[k].from === me) publishRaw(k, store[k], true); });
   }
@@ -82,6 +103,7 @@
         c.on('message', onMessage);
         return c;
       });
+      loadMine();
       clearInterval(presenceTimer);
       const ping = () => publishRaw('presence/' + me, { seq: nextSeq(), from: me }, false);
       presenceTimer = setInterval(() => { ping(); statusCb(); }, 3000);
@@ -97,6 +119,7 @@
       const msg = { v, seq: nextSeq(), from: me };
       store[key] = msg;
       publishRaw(key, msg, true);
+      saveMine();
       emit(key, v, msg);
     },
     get(key, def) {
