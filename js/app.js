@@ -173,9 +173,10 @@
   };
 
   STAGES[2] = {
-    k: 'Kapitel 2', title: 'Die Tanzfläche', when: 'Einen Abend später · Club Pik Dame', icon: '♠',
+    k: 'Kapitel 2', title: 'Die Tanzfläche', when: 'Am Tag danach · Club Pik Dame', icon: '♠',
     cap: 'Pik Dame. Die Tanzfläche gehörte euch.',
-    story: `<p>Einen Abend nach dem Beachvolleyball gab's erst einen Spieleabend bei mir, und danach ging's ab ins <b>Pik Dame</b>. Der DJ dort ist eigen: Er legt erst auf,
+    story: `<p>Nach dem Beachen gab's am Abend noch einen Spieleabend. Am Tag danach hat Lauri Noah mit dem Auto abgeholt (mit mir und meiner Freundin an Bord 🚗),
+      erst haben wir bei mir vorgetrunken, dann ging's ab ins <b>Pik Dame</b>. Der DJ dort ist eigen: Er legt erst auf,
       wenn die Tanzfläche das Zeichen des Clubs zeigt.</p>`,
     p1(el, api) {
       el.innerHTML = `
@@ -268,9 +269,9 @@
             <!-- Tisch -->
             <rect x="380" y="360" width="260" height="22" fill="#7a5233"/>
             <rect x="395" y="382" width="14" height="70" fill="#5e3e26"/><rect x="611" y="382" width="14" height="70" fill="#5e3e26"/>
-            <!-- Pizzakarton -->
-            <rect x="400" y="320" width="120" height="40" fill="#c9a26b" stroke="#8a6a40" stroke-width="3"/>
-            <text x="460" y="347" font-size="16" text-anchor="middle" fill="#7a2a1a" font-family="Inter" font-weight="800">PIZZA</text>
+            <!-- Spielebox -->
+            <rect x="400" y="320" width="120" height="40" fill="#2f5d8a" stroke="#1d3a57" stroke-width="3"/>
+            <text x="460" y="346" font-size="15" text-anchor="middle" fill="#ffd76b" font-family="Inter" font-weight="800">🎲 SPIELE</text>
             <text x="508" y="314" font-size="20" fill="#e9dcc6" font-family="Inter" font-weight="700">9</text>
             <!-- Spielkarte -->
             <g transform="rotate(-14 585 335)"><rect x="560" y="300" width="48" height="66" rx="5" fill="#fff" stroke="#333"/>
@@ -1101,14 +1102,21 @@
   function hideModal() { const o = $('#overlay'); o.hidden = true; o.innerHTML = ''; }
 
   // Zwischensequenz nach einem gelösten Kapitel (n) bzw. vor dem Start (0)
+  // Welche Szenen nach welchem Kapitel laufen (0 = vor dem Start)
+  const TRANS = { 0: [0, 'beach'] };
   function showSolved(n, then) {
     const st = STAGES[n];
     if (!window.Scenes || !Scenes.has(n)) return then();
     if (n > 0) sndOk();
+    const list = TRANS[n] || [n];
     const head = n === 0 ? 'Prolog' : n === 12 ? 'Fall gelöst' : '✓ ' + st.k + ' gelöst';
-    showModal(`<p class="sub-ok">${head}</p>${Scenes.html(n)}
-      <button class="btn gold" id="next">${n === 0 ? 'Los geht\'s →' : n === 12 ? 'Zur Pik Dame →' : 'Weiter →'}</button>`, true);
-    $('#next').onclick = () => { hideModal(); then(); };
+    const show = i => {
+      const last = i === list.length - 1;
+      showModal(`<p class="sub-ok">${head}</p>${Scenes.html(list[i])}
+        <button class="btn gold" id="next">${!last ? 'Weiter →' : n === 0 ? 'Los geht\'s →' : n === 12 ? 'Zur Pik Dame →' : 'Weiter →'}</button>`, true);
+      $('#next').onclick = () => { if (last) { hideModal(); then(); } else show(i + 1); };
+    };
+    show(0);
   }
 
   // ---------- Nachrichten vom Netz ----------

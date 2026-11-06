@@ -92,7 +92,27 @@
         ${heart(300, 120, 1.3, 1.2)}`
     },
     1: {
-      cap: 'Beachvolleyball im April. Der erste Ballwechsel. 🏐',
+      cap: 'Am Tag danach: Lauri am Steuer. Erst zu Luis vortrinken, dann ins Pik Dame! 🚗🎶',
+      svg: () => `${sky('#ff9e7a', '#5a2a5a')}${stars(12)}
+        ${[[20, 150, 70], [100, 120, 60], [170, 170, 50], [430, 140, 60], [500, 110, 80]].map(([x, y, w]) => `<rect x="${x}" y="${y}" width="${w}" height="${270 - y}" fill="#2a1a33"/><rect x="${x + 10}" y="${y + 15}" width="10" height="12" fill="#ffd76b" opacity=".6"/><rect x="${x + w - 22}" y="${y + 40}" width="10" height="12" fill="#ffd76b" opacity=".45"/>`).join('')}
+        <rect x="380" y="150" width="90" height="120" fill="#3a2f4a"/><text x="425" y="185" text-anchor="middle" font-size="13" fill="#fff" font-family="Inter" font-weight="700">LUIS</text>
+        <rect x="408" y="210" width="34" height="60" fill="#d9ad5b"/><text x="425" y="140" text-anchor="middle" font-size="22" class="pop" style="animation-delay:3.4s">🍻</text>
+        <rect y="270" width="600" height="70" fill="#2b2633"/><rect class="lane" y="302" width="600" height="4" fill="#d9ad5b" opacity=".5"/>
+        <g class="car"><g style="transform:translate(0,0)">
+          <g style="transform:translate(100px,262px) scale(.62)">${person('noah', { pose: '' })}</g>
+          <g style="transform:translate(172px,262px) scale(.62)">${person('lauri', { pose: '' })}</g>
+          <path d="M40,250 L70,212 Q80,200 100,200 L190,200 Q208,200 220,214 L248,250 Z" fill="none" stroke="#c22c3c" stroke-width="7"/>
+          <line x1="140" y1="200" x2="140" y2="250" stroke="#c22c3c" stroke-width="6"/>
+          <circle cx="196" cy="236" r="9" fill="none" stroke="#222" stroke-width="3"/>
+          <rect x="20" y="246" width="250" height="40" rx="14" fill="#d8323f"/><rect x="30" y="256" width="40" height="6" rx="3" fill="#fff" opacity=".5"/>
+          <circle cx="266" cy="262" r="6" fill="#ffe7a0"/>
+          <circle cx="75" cy="288" r="17" fill="#222"/><circle cx="75" cy="288" r="7" fill="#999"/><circle cx="220" cy="288" r="17" fill="#222"/><circle cx="220" cy="288" r="7" fill="#999"/>
+          <text x="145" y="276" text-anchor="middle" font-size="11" font-family="Inter" font-weight="700" fill="#fff">+ Luis & Freundin an Bord</text>
+        </g></g>
+        <text class="note" x="160" y="160" font-size="24" fill="#ffd76b">♪</text><text class="note" style="animation-delay:.9s" x="220" y="150" font-size="24" fill="#ff8fb1">♫</text>`
+    },
+    beach: {
+      cap: 'Alles begann im April. Beachvolleyball im Sand. 🏐',
       svg: () => `${sky('#7cc6f2', '#cdeefc')}<circle cx="520" cy="60" r="32" fill="#ffd84d" class="sun"/>
         <rect y="250" width="600" height="90" fill="#f0d39a"/><path d="M0,250 Q150,240 300,250 T600,250 V260 H0Z" fill="#e7c27c"/>
         <line x1="300" y1="160" x2="300" y2="300" stroke="#333" stroke-width="4"/><rect x="230" y="158" width="140" height="22" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="3 3"/>
@@ -126,7 +146,7 @@
       svg: () => `${sky('#ffb37a', '#ffe3b8')}<circle cx="300" cy="250" r="70" fill="#ffd84d" class="rise"/>
         <rect y="250" width="600" height="90" fill="#8a6a54"/>
         <rect x="70" y="120" width="140" height="110" fill="#c9e4f5" stroke="#fff" stroke-width="6"/><line x1="140" y1="120" x2="140" y2="230" stroke="#fff" stroke-width="4"/>
-        <rect x="380" y="230" width="140" height="18" fill="#6b4a33"/><rect x="400" y="208" width="70" height="22" fill="#c9a26b"/><text x="435" y="224" text-anchor="middle" font-size="11" font-family="Inter" font-weight="800" fill="#7a2a1a">PIZZA</text>
+        <rect x="380" y="230" width="140" height="18" fill="#6b4a33"/><rect x="400" y="208" width="70" height="22" fill="#c9a26b"/><text x="435" y="224" text-anchor="middle" font-size="10" font-family="Inter" font-weight="800" fill="#7a2a1a">🎲 SPIELE</text>
         ${actor('noah', 240, 300, { pose: 'yawn' })}
         ${actor('lauri', 320, 300, { pose: 'phone', flip: true })}
         <g style="transform:translate(350px,140px)"><g class="pop" style="animation-delay:1.2s"><rect x="-70" y="-20" width="140" height="34" rx="16" fill="#fff"/><text x="0" y="2" text-anchor="middle" font-size="12" font-family="Inter" font-weight="700" fill="#2a1d16">Papa, ich schlaf bei Luis ❤️</text></g></g>
@@ -278,6 +298,8 @@
   .doorleaf{animation:door 1s .8s ease-in-out both;transform-box:fill-box;transform-origin:0 50%} @keyframes door{to{transform:scaleX(.1)}}
   .wave{animation:wv 2s ease-in-out infinite alternate} @keyframes wv{to{transform:translateX(-20px)}}
   .steam{animation:note 2s ease-out infinite}
+  .car{animation:car 3.4s cubic-bezier(.3,.7,.4,1) both} @keyframes car{from{transform:translateX(-300px)}to{transform:translateX(150px)}}
+  .lane{stroke-dasharray:0}
   .scap{font-family:Caveat,cursive;font-size:1.7rem;line-height:1.15;margin:14px 0 6px;min-height:2.2em}
   .scap span{opacity:0;animation:fadein .05s forwards}
   @keyframes fadein{to{opacity:1}}
