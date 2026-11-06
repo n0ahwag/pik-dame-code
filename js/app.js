@@ -173,9 +173,9 @@
   };
 
   STAGES[2] = {
-    k: 'Kapitel 2', title: 'Die Tanzfläche', when: 'Dieselbe Nacht · Club Pik Dame', icon: '♠',
+    k: 'Kapitel 2', title: 'Die Tanzfläche', when: 'Einen Abend später · Club Pik Dame', icon: '♠',
     cap: 'Pik Dame. Die Tanzfläche gehörte euch.',
-    story: `<p>Nach dem Beachvolleyball sind wir weitergezogen, ins <b>Pik Dame</b>. Der DJ dort ist eigen: Er legt erst auf,
+    story: `<p>Einen Abend nach dem Beachvolleyball gab's erst einen Spieleabend bei mir, und danach ging's ab ins <b>Pik Dame</b>. Der DJ dort ist eigen: Er legt erst auf,
       wenn die Tanzfläche das Zeichen des Clubs zeigt.</p>`,
     p1(el, api) {
       el.innerHTML = `
@@ -211,9 +211,9 @@
   };
 
   STAGES[3] = {
-    k: 'Kapitel 3', title: 'Die Garderobe', when: 'Pik Dame · kurz nach 3 Uhr', icon: '🧥',
+    k: 'Kapitel 3', title: 'Die Garderobe', when: 'Pik Dame · gegen 5 Uhr morgens', icon: '🧥',
     cap: 'Jacken geholt. Nächster Halt?',
-    story: `<p>Irgendwann wolltet ihr eure Jacken holen. Der Türsteher an der Garderobe gibt sie aber nur gegen ein Passwort raus.
+    story: `<p>Irgendwann, so gegen 5 Uhr morgens, wolltet ihr eure Jacken holen. Der Türsteher an der Garderobe gibt sie aber nur gegen ein Passwort raus.
       Ich habe es euch auf die Garderobenmarken geschrieben, natürlich verschlüsselt. 🃏</p>`,
     p1(el) {
       const c = [['A', '♦'], ['6', '♥'], ['D', '♠'], ['6', '♥'], ['9', '♣'], ['8', '♦']];
@@ -239,10 +239,10 @@
   };
 
   STAGES[4] = {
-    k: 'Kapitel 4', title: 'Die Nacht bei Luis', when: 'Bei Luis zu Hause · irgendwann morgens', icon: '🍕',
-    cap: 'Die Nacht bei Luis. Mit Pizza um 4 Uhr.',
-    story: `<p>Danach seid ihr mit zu mir gekommen. Am nächsten Morgen habe ich euch eine Frühstücksbox mit Zahlenschloss hingestellt,
-      denn ohne Rätsel gibt's bei mir nichts. 😄 Mein Wohnzimmer war allerdings noch ziemlich dunkel.</p>`,
+    k: 'Kapitel 4', title: 'Die Nacht bei Luis', when: 'Bei Luis zu Hause · kurz vor Sonnenaufgang', icon: '📱',
+    cap: 'Die Nacht bei Luis. Papa weiß Bescheid. 📱',
+    story: `<p>Danach seid ihr mit zu mir gekommen. Lauri musste noch schnell ihrem Papa schreiben, dass sie bei mir schläft, aber ihr Akku war leer. 🪫
+      Mein einziges Ladekabel liegt in einer Schublade mit Zahlenschloss, denn ohne Rätsel gibt's bei mir nichts. 😄 Und das Wohnzimmer war stockdunkel.</p>`,
     p1(el) {
       el.innerHTML = `
         <div class="you">Du stehst in <b>Luis' dunklem Wohnzimmer</b> und hast eine Taschenlampe (Maus bzw. Finger bewegen).
@@ -297,7 +297,7 @@
           </svg>
           <div class="dark"></div>
         </div>
-        <div class="waitnote">Lauri hat Luis' Zettel und das Zahlenschloss der Frühstücksbox.</div>`;
+        <div class="waitnote">Lauri hat Luis' Zettel und das Zahlenschloss der Schublade.</div>`;
       const room = $('#room', el);
       const move = e => {
         const r = room.getBoundingClientRect();
@@ -311,18 +311,18 @@
     },
     p2(el, api) {
       el.innerHTML = `
-        <div class="you">Du hast <b>Luis' Zettel vom Kühlschrank</b> und die Frühstücksbox. Das Zimmer sieht nur Noah.</div>
+        <div class="you">Du hast <b>Luis' Zettel</b> und die Schublade mit dem Ladekabel. Papa wartet auf deine Nachricht! Das Zimmer sieht nur Noah.</div>
         <div class="paper note">
-          <p class="hand" style="font-size:1.55rem;line-height:1.25;margin:0">Guten Morgen, ihr Turteltauben! 🐦<br>
-          Der Code für die Frühstücksbox steht im Wohnzimmer, in dieser Reihenfolge:<br>
-          1. Was ihr um 4 Uhr nachts noch gegessen habt<br>
+          <p class="hand" style="font-size:1.55rem;line-height:1.25;margin:0">Na, ihr Turteltauben? 🐦<br>
+          Der Code für die Ladekabel-Schublade steht im Wohnzimmer, in dieser Reihenfolge:<br>
+          1. Was vom Spieleabend noch übrig ist<br>
           2. Womit alles angefangen hat<br>
-          3. Wo ihr gestern Abend wart<br>
-          4. Wann ihr endlich eingeschlafen seid<br>
+          3. Wo ihr heute Nacht wart<br>
+          4. Wie spät es war, als ihr heimgekommen seid<br>
           <br>PS: Normale Zahlen lügen. Die Wahrheit leuchtet nur im Partylicht. ✨</p>
         </div>
         <div class="uvswitch"><span>Partylicht (Schwarzlicht)</span><button class="big-toggle" id="uv" aria-label="Schwarzlicht"></button></div>
-        <h3>Frühstücksbox 🔒</h3>`;
+        <h3>Schublade mit Ladekabel 🔒</h3>`;
       const draw = () => $('#uv', el).classList.toggle('on', !!get('s4/uv', false));
       $('#uv', el).onclick = () => { set('s4/uv', !get('s4/uv', false)); beep([300], 0.1, 'square', 0.05); };
       draw(); api.onUpdate(k => { if (k === 's4/uv') draw(); });
@@ -356,14 +356,14 @@
         ['r', '23:01', 'Ich bin gespannt 😏 Gute Nacht!'],
         ['Donnerstag'],
         ['l', '07:42', 'Guten Morgen ☀️'],
-        ['r', '08:26', 'Morgen! Ich bin noch so müde von Samstag 😴'],
+        ['r', '08:26', 'Morgen! Ich bin immer noch so müde vom Pik Dame 😴'],
         ['l', '12:03', 'Same 😅'],
         ['r', '13:09', 'Luis hat mich schon dreimal gefragt, ob wir schreiben 🙄'],
         ['l', '13:22', 'Haha typisch Luis. Sag ihm nichts!'],
         ['r', '14:05', 'Niemals 🤐'],
         ['Freitag'],
-        ['l', '18:37', 'Hast du am Wochenende Zeit? Ich würde dich gerne wiedersehen'],
-        ['r', '19:18', 'Ja, Sonntag hätte ich Zeit 😊'],
+        ['l', '18:37', 'Hast du nächste Woche Zeit? Ich würde dich gerne wiedersehen'],
+        ['r', '19:18', 'Ja, Dienstag hätte ich Zeit 😊'],
         ['l', '19:44', 'Perfekt! Was wollen wir machen?'],
         ['r', '20:05', 'Ich kenn da eine schöne Ecke in Preungesheim 🌳'],
         ['l', '20:12', 'Deal. Ich freu mich ❤️'],
@@ -381,7 +381,7 @@
   };
 
   STAGES[6] = {
-    k: 'Kapitel 6', title: 'Spaziergang', when: 'Ein Sonntag · Preungesheim', icon: '🌳',
+    k: 'Kapitel 6', title: 'Spaziergang', when: 'Ein Dienstag · Preungesheim', icon: '🌳',
     cap: 'Der erste Spaziergang durch Preungesheim.',
     story: `<p>Euer erstes richtiges Date: ein Spaziergang durch Preungesheim. Ich habe euch eine Route aufgeschrieben.
       Bei jedem 📸 macht ihr ein Foto, und die Fotos verraten, wohin es danach ging.</p>`,
@@ -550,7 +550,7 @@
   STAGES[9] = {
     k: 'Kapitel 9', title: 'Der Abschied', when: '1. September · Flughafen', icon: '✈️',
     cap: '1. September. Der große Abschied.',
-    story: `<p>Dann kam der 1. September und damit der große Abschied. Noah ist nach Spanien geflogen. Beim Rollen zur Startbahn
+    story: `<p>Dann kam der 1. September und damit der große Abschied. Noah ist für sein Auslandssemester nach Alicante geflogen. Beim Rollen zur Startbahn
       hat er mit der Leselampe aus dem Fenster geblinkt, eine Nachricht nur für Lauri. ✈️💛</p>`,
     p1(el) {
       let stars = '';
@@ -616,9 +616,9 @@
   };
 
   STAGES[10] = {
-    k: 'Kapitel 10', title: 'Die Überraschung', when: 'Sonntag, 6. September · Spanien', icon: '💐',
+    k: 'Kapitel 10', title: 'Die Überraschung', when: 'Sonntag, 6. September · Alicante', icon: '💐',
     cap: '6. September. Die Überraschung!',
-    story: `<p>Fünf Tage später, an einem Sonntag, stand Lauri plötzlich in Spanien vor Noahs Haus, und Noah ahnte nichts. 🤫
+    story: `<p>Fünf Tage später, an einem Sonntag, stand Lauri plötzlich in Alicante vor Noahs Haus, und Noah ahnte nichts. 🤫
       Es gab nur ein Problem: Noah wohnte erst seit ein paar Tagen dort.</p>`,
     p1(el, api) {
       el.innerHTML = `
@@ -686,9 +686,9 @@
   const PAN_E = Object.fromEntries([...ING, ...ACT].map(([id, e]) => [id, e]));
 
   STAGES[11] = {
-    k: 'Kapitel 11', title: 'Shakshuka', when: 'Oktober · Valencia', icon: '🍳',
+    k: 'Kapitel 11', title: 'Shakshuka', when: 'Oktober · Alicante & Valencia', icon: '🍳',
     cap: 'Valencia. Die beste Shakshuka der Welt.',
-    story: `<p>Im Oktober der zweite Besuch, diesmal geplant, und zusammen nach Valencia. In einem kleinen Café gab es diese
+    story: `<p>Im Oktober kam der zweite Besuch, diesmal geplant: Lauri bei Noah in Alicante und am Wochenende ein Ausflug nach Valencia. In einem kleinen Café gab es diese
       unglaubliche Shakshuka. Der Kellner hat das Rezept verraten, allerdings nur auf Spanisch. 🍳</p>`,
     p1(el, api) {
       el.innerHTML = `
@@ -1033,7 +1033,7 @@
           <p>Leider ist die Akte ziemlich durcheinandergeraten, und die Pik Dame ist verschwunden. Um sie zu finden, müsst ihr eure Geschichte
           noch einmal erleben, Kapitel für Kapitel, vom ersten Beachvolleyball bis heute.</p>
           <p>Die Sache hat einen Haken: <b>Jeder von euch sieht nur die Hälfte.</b> Ihr müsst also beschreiben, zuhören und zusammen tüfteln.
-          Das könnt ihr ja inzwischen ziemlich gut, auch über ein paar hundert Kilometer. ♠</p>
+          Das könnt ihr ja inzwischen ziemlich gut, auch über 1.500 Kilometer zwischen Frankfurt und Alicante. ♠</p>
           <p>Viel Glück!<br>– Luis</p>
         </div>
         <div class="lobby-ready">
@@ -1072,7 +1072,7 @@
         <div class="story" style="text-align:left"><div class="from">Aus Luis' geheimer Akte · letzte Seite</div>
           <p>Die Pik Dame war nie verschwunden. Sie saß die ganze Zeit am anderen Ende der Leitung. 😉
           Beachvolleyball, Pik Dame, die Nacht bei mir, die erste Nachricht, Preungesheim, Bornheim, Oberursel, der Abschied,
-          die Überraschung, Valencia, und heute vier Monate. Ich würde sagen: Mission Amor erfüllt. ♠❤️</p></div>
+          die Überraschung, Alicante und Valencia, und heute vier Monate. Ich würde sagen: Mission Amor erfüllt. ♠❤️</p></div>
         <div class="stats"><div>Zeit<b>${t0 ? fmtTime(t1 - t0) : '–'}</b></div><div>Tipps genutzt<b>${hints}</b></div><div>Monate<b>4</b></div></div>
         <div class="letter">${String(window.NACHRICHT || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]))}</div>
         <a class="btn gold" href="https://www.youtube.com/results?search_query=Blumengarten+Gloria" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">🎵 Jetzt euer Lied: „Gloria“ von Blumengarten</a>

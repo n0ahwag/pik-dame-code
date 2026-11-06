@@ -81,11 +81,11 @@
 
   const SCENES = {
     0: {
-      cap: 'Frankfurt ↔ Spanien. Zwei Bildschirme, ein Team. 📞',
+      cap: 'Frankfurt ↔ Alicante. Zwei Bildschirme, ein Team. 📞',
       svg: () => `${sky('#1b1030', '#3a1a40')}${stars(40)}
         <path d="M150,250 Q300,90 450,250" fill="none" stroke="#d9ad5b" stroke-width="3" stroke-dasharray="8 8" class="dash"/>
         <text x="150" y="300" text-anchor="middle" fill="#f3e9df" font-size="15" font-family="Inter" font-weight="700">🇩🇪 Frankfurt</text>
-        <text x="450" y="300" text-anchor="middle" fill="#f3e9df" font-size="15" font-family="Inter" font-weight="700">🇪🇸 Spanien</text>
+        <text x="450" y="300" text-anchor="middle" fill="#f3e9df" font-size="15" font-family="Inter" font-weight="700">🇪🇸 Alicante</text>
         ${actor('lauri', 150, 275, { pose: 'phone', anim: 'pop .6s both' })}
         ${actor('noah', 450, 275, { pose: 'phone', flip: true, anim: 'pop .6s .3s both' })}
         <g class="sig"><text x="300" y="150" text-anchor="middle" font-size="34">📞</text></g>
@@ -114,7 +114,7 @@
         <text x="300" y="200" text-anchor="middle" font-size="44" fill="#fff" opacity=".9" class="pulse">♠</text>`
     },
     3: {
-      cap: '3 Uhr nachts, Jacken an, ab zu Luis. 🌙',
+      cap: '5 Uhr morgens. Jacken an, ab zu Luis. 🌙',
       svg: () => `${sky('#0b1030', '#2a2050')}${stars(50)}<circle cx="500" cy="60" r="26" fill="#f4efd0"/><circle cx="510" cy="54" r="24" fill="#16183a"/>
         <rect y="270" width="600" height="70" fill="#2b2633"/><rect y="292" width="600" height="4" fill="#d9ad5b" opacity=".4"/>
         ${[40, 160, 420].map(x => `<rect x="${x}" y="150" width="70" height="120" fill="#1d1a2b"/><rect x="${x + 12}" y="170" width="14" height="16" fill="#ffd76b" opacity=".7"/><rect x="${x + 42}" y="200" width="14" height="16" fill="#ffd76b" opacity=".5"/>`).join('')}
@@ -122,13 +122,15 @@
         <g class="walkacross">${actor('lauri', 0, 280, { pose: 'walking' })}${actor('noah', 50, 280, { pose: 'walking' })}</g>`
     },
     4: {
-      cap: 'Der Morgen danach. Pizza zum Frühstück? 🍕',
+      cap: 'Bei Luis. „Papa, ich schlaf bei Luis ❤️“ … gesendet! 📱',
       svg: () => `${sky('#ffb37a', '#ffe3b8')}<circle cx="300" cy="250" r="70" fill="#ffd84d" class="rise"/>
         <rect y="250" width="600" height="90" fill="#8a6a54"/>
         <rect x="70" y="120" width="140" height="110" fill="#c9e4f5" stroke="#fff" stroke-width="6"/><line x1="140" y1="120" x2="140" y2="230" stroke="#fff" stroke-width="4"/>
         <rect x="380" y="230" width="140" height="18" fill="#6b4a33"/><rect x="400" y="208" width="70" height="22" fill="#c9a26b"/><text x="435" y="224" text-anchor="middle" font-size="11" font-family="Inter" font-weight="800" fill="#7a2a1a">PIZZA</text>
-        ${actor('noah', 240, 300, { pose: 'stretch' })}
-        ${actor('lauri', 320, 300, { pose: 'yawn', flip: true })}
+        ${actor('noah', 240, 300, { pose: 'yawn' })}
+        ${actor('lauri', 320, 300, { pose: 'phone', flip: true })}
+        <g style="transform:translate(350px,140px)"><g class="pop" style="animation-delay:1.2s"><rect x="-70" y="-20" width="140" height="34" rx="16" fill="#fff"/><text x="0" y="2" text-anchor="middle" font-size="12" font-family="Inter" font-weight="700" fill="#2a1d16">Papa, ich schlaf bei Luis ❤️</text></g></g>
+        <g style="transform:translate(400px,180px)"><g class="pop" style="animation-delay:2.2s"><text font-size="14" font-family="Inter" font-weight="700" fill="#2a8a4a">✓✓ gesendet</text></g></g>
         <text x="270" y="150" font-size="22" class="zz">💤</text>`
     },
     5: {
@@ -188,7 +190,7 @@
         <text x="300" y="50" text-anchor="middle" font-size="22" font-family="Inter" font-weight="800" fill="#d11f3c" class="pop" style="animation-delay:1.6s">ÜBERRASCHUNG!</text>`
     },
     11: {
-      cap: 'Valencia. Shakshuka bei Sonnenuntergang. 🍳🌅',
+      cap: 'Alicante & Valencia. Shakshuka bei Sonnenuntergang. 🍳🌅',
       svg: () => `${sky('#ff7e5f', '#feb47b')}<circle cx="300" cy="230" r="60" fill="#ffd84d" opacity=".9"/>
         <rect y="230" width="600" height="110" fill="#2b6f9e"/><path d="M0,240 Q75,232 150,240 T300,240 T450,240 T600,240" stroke="#fff" stroke-width="2" fill="none" opacity=".5" class="wave"/>
         <path d="M20,230 L40,170 L60,230 Z M70,230 L95,150 L120,230Z" fill="#6b3a2a" opacity=".6"/>
