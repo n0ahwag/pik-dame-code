@@ -175,7 +175,7 @@
   STAGES[2] = {
     k: 'Kapitel 2', title: 'Die Tanzfläche', when: 'Am Tag danach · Club Pik Dame', icon: '♠',
     cap: 'Pik Dame. Die Tanzfläche gehörte euch.',
-    story: `<p>Nach dem Beachen gab's am Abend noch einen Spieleabend. Am Tag danach hat Lauri Noah mit dem Auto abgeholt (mit mir und meiner Freundin an Bord 🚗),
+    story: `<p>Am Tag nach dem Spieleabend hat Lauri Noah mit dem Auto abgeholt (mit mir und meiner Freundin an Bord 🚗),
       erst haben wir bei mir vorgetrunken, dann ging's ab ins <b>Pik Dame</b>. Der DJ dort ist eigen: Er legt erst auf,
       wenn die Tanzfläche das Zeichen des Clubs zeigt.</p>`,
     p1(el, api) {
@@ -799,7 +799,167 @@
   };
 
   // ---------- API für Kapitel ----------
+  // ---------- Neue Kapitel ----------
+  const PIPS = { 1: [[1, 1]], 2: [[0, 0], [2, 2]], 3: [[0, 0], [1, 1], [2, 2]], 4: [[0, 0], [2, 0], [0, 2], [2, 2]], 5: [[0, 0], [2, 0], [1, 1], [0, 2], [2, 2]], 6: [[0, 0], [0, 1], [0, 2], [2, 0], [2, 1], [2, 2]] };
+  const DCOL = { rot: '#d8323f', gelb: '#f2c014', blau: '#2563eb', grün: '#15803d' };
+  function dieFace(x, y, s, col, n, pip = '#fff') {
+    return `<rect x="${x}" y="${y}" width="${s}" height="${s}" rx="${s * 0.16}" fill="${col}" stroke="rgba(0,0,0,.35)" stroke-width="2"/>` +
+      PIPS[n].map(([a, b]) => `<circle cx="${x + s * (0.25 + a * 0.25)}" cy="${y + s * (0.25 + b * 0.25)}" r="${s * 0.085}" fill="${pip}"/>`).join('');
+  }
+
+  STAGES.dice = {
+    title: 'Der Spieleabend', when: 'April · am Abend nach dem Beachen', icon: '🎲',
+    story: `<p>Nach dem Beachen gab's am Abend noch einen Spieleabend. Ich hatte vier Würfel auf den Tisch gelegt und verkündet:
+      „Wer meinen Code knackt, darf neben Lauri sitzen.“ 😏 Noah saß auf der einen Seite vom Tisch, Lauri genau gegenüber.</p>`,
+    p1(el, api) {
+      const dice = [['rot', 3], ['gelb', 1], ['blau', 5], ['grün', 6]];
+      el.innerHTML = `
+        <div class="you">Du sitzt <b>auf deiner Seite des Tisches</b> und siehst die Würfel <b>von vorne</b>. Lauri sitzt dir gegenüber.</div>
+        <div class="card" style="background:#5a3a24;padding:16px">
+          <svg viewBox="0 0 520 170" style="width:100%;display:block">
+            <rect x="0" y="130" width="520" height="40" fill="#7a5233"/>
+            ${dice.map(([c, n], i) => `<path d="M${30 + i * 125},40 l14,-14 h86 l-14,14 z" fill="${DCOL[c]}" opacity=".7"/>${dieFace(30 + i * 125, 40, 86, DCOL[c], n)}`).join('')}
+          </svg>
+        </div>
+        <div class="paper note" style="margin-top:14px">
+          <p class="hand" style="font-size:1.45rem;margin:0;line-height:1.25">Luis' Code 🎲<br>
+          Die Augen auf den <u>Unterseiten</u> der Würfel, von Noah aus gesehen von links nach rechts.<br>
+          Kleiner Tipp: Gegenüberliegende Seiten eines Würfels ergeben zusammen immer 7.</p>
+        </div>
+        <h3 style="margin-top:16px">Luis' Code</h3>`;
+      api.answer(el, '4 Ziffern …');
+    },
+    p2(el) {
+      const top = [['grün', 2], ['blau', 6], ['gelb', 3], ['rot', 5]];
+      el.innerHTML = `
+        <div class="you">Du sitzt <b>Noah gegenüber</b> und schaust <b>von oben</b> auf die Würfel.</div>
+        <div class="card" style="background:#7a5233;padding:16px">
+          <svg viewBox="0 0 520 150" style="width:100%;display:block">
+            ${top.map(([c, n], i) => dieFace(30 + i * 125, 25, 96, DCOL[c], n)).join('')}
+          </svg>
+          <p class="center small" style="color:#f3e9df;margin:6px 0 0">⬇ Hier sitzt du · Noah sitzt auf der anderen Seite ⬆</p>
+        </div>
+        <div class="waitnote">Noah hat Luis' Zettel und gibt den Code ein.</div>`;
+    }
+  };
+
+  const GR_HOLES = [[0, 0], [4, 0], [2, 5], [1, 0], [4, 4], [4, 3], [0, 3], [4, 2], [3, 2]];
+  const GR_GRID = ['IDECIE', 'HSWIDR', 'ETAURZ', 'NGASEE', 'EBHLES', 'HEWINI'];
+  STAGES.grille = {
+    title: 'Der Brief', when: 'Ende August · kurz vor dem Abflug', icon: '💌',
+    story: `<p>Kurz vor dem Abflug hat Noah mir einen Zettel für Lauri gegeben: lauter wirre Buchstaben. 🤨
+      Die passende Schablone mit Löchern hat er natürlich selbst behalten. Typisch.</p>`,
+    p1(el, api) {
+      const L = 'ABCDEF';
+      el.innerHTML = `
+        <div class="you">Du hast <b>die Schablone</b>. Den Brief mit den Buchstaben hat Lauri.</div>
+        <div class="paper">
+          <p style="margin-top:0" class="small">Leg die Schablone mit dem <b>★ oben</b> auf den Brief. Die Löcher zeigen die Buchstaben, Zeile für Zeile
+          (von oben nach unten, links nach rechts). Danach drehst du die Schablone um 90° im Uhrzeigersinn, insgesamt vier Stellungen.</p>
+          <svg viewBox="0 0 280 280" style="width:100%;max-width:340px;display:block;margin:0 auto">
+            ${[...L].map((c, i) => `<text x="${55 + i * 36}" y="22" text-anchor="middle" font-size="14" font-weight="700" font-family="Inter" fill="#8a6b5b">${c}</text>`).join('')}
+            ${[1, 2, 3, 4, 5, 6].map((r, i) => `<text x="18" y="${60 + i * 36}" text-anchor="middle" font-size="14" font-weight="700" font-family="Inter" fill="#8a6b5b">${r}</text>`).join('')}
+            <g id="sten" style="transform-origin:145px 145px;transition:transform .6s">
+              <rect x="35" y="35" width="220" height="220" rx="8" fill="#2a1d16"/>
+              ${GR_HOLES.map(([r, c]) => `<rect x="${41 + c * 36}" y="${41 + r * 36}" width="28" height="28" rx="4" fill="#f7f0e4"/>`).join('')}
+              <text x="145" y="52" text-anchor="middle" font-size="16" fill="#d9ad5b">★</text>
+            </g>
+          </svg>
+          <div class="row" style="justify-content:center;margin-top:8px">
+            <button class="btn small" id="rot">↻ Um 90° drehen</button><span class="small" id="rs">Stellung 1 von 4</span>
+          </div>
+        </div>
+        <div class="waitnote">Lauri schreibt mit und gibt die Nachricht ein.</div>`;
+      let t = 0;
+      $('#rot', el).onclick = () => { t++; $('#sten', el).style.transform = `rotate(${t * 90}deg)`; $('#rs', el).textContent = `Stellung ${(t % 4) + 1} von 4`; beep([500], 0.06, 'triangle', 0.05); };
+    },
+    p2(el, api) {
+      const L = 'ABCDEF';
+      el.innerHTML = `
+        <div class="you">Du hast <b>Noahs Brief</b>. Die Schablone dazu hat Noah.</div>
+        <div class="paper">
+          <svg viewBox="0 0 280 280" style="width:100%;max-width:340px;display:block;margin:0 auto">
+            ${[...L].map((c, i) => `<text x="${55 + i * 36}" y="22" text-anchor="middle" font-size="14" font-weight="700" font-family="Inter" fill="#8a6b5b">${c}</text>`).join('')}
+            ${[1, 2, 3, 4, 5, 6].map((r, i) => `<text x="18" y="${60 + i * 36}" text-anchor="middle" font-size="14" font-weight="700" font-family="Inter" fill="#8a6b5b">${r}</text>`).join('')}
+            <rect x="35" y="35" width="220" height="220" rx="8" fill="#fffdf6" stroke="#d8c9b0"/>
+            ${GR_GRID.map((row, r) => row.split('').map((ch, c) => `<text x="${55 + c * 36}" y="${62 + r * 36}" text-anchor="middle" font-size="20" font-family="Caveat, cursive" font-weight="700" fill="#2a1d16">${ch}</text>`).join('')).join('')}
+          </svg>
+          <p class="hand center" style="font-size:1.3rem;margin:.3em 0 0">Für Lauri 💌 (nur mit Schablone lesbar)</p>
+        </div>
+        <h3 style="margin-top:16px">Die Nachricht</h3>`;
+      api.answer(el, 'Die ganze Nachricht …');
+    }
+  };
+
+  // Sternbild: Buchstaben aus Sternen, oben bei Noah, unten bei Lauri
+  const SL = {
+    S: [[[4, 0], [0, 0], [0, 3], [4, 3], [4, 6], [0, 6]]],
+    E: [[[4, 0], [0, 0], [0, 6], [4, 6]], [[0, 3], [3, 3]]],
+    H: [[[0, 0], [0, 6]], [[4, 0], [4, 6]], [[0, 3], [4, 3]]],
+    N: [[[0, 6], [0, 0], [4, 6], [4, 0]]],
+    U: [[[0, 0], [0, 6], [4, 6], [4, 0]]],
+    C: [[[4, 0], [0, 0], [0, 6], [4, 6]]],
+    T: [[[0, 0], [4, 0]], [[2, 0], [2, 6]]]
+  };
+  const CUT = 2.6;
+  function skyHalf(word, top) {
+    const sc = 11, sy = 30, gap = 3, ox = 18, oy = 16;
+    let lines = '', stars = '';
+    const clipY = top ? [-1, CUT] : [CUT, 7];
+    word.split('').forEach((ch, i) => {
+      const bx = i * (4 + gap);
+      SL[ch].forEach(path => {
+        for (let k = 0; k < path.length - 1; k++) {
+          let [x1, y1] = path[k], [x2, y2] = path[k + 1];
+          // Segment auf die eigene Hälfte zuschneiden
+          const lo = clipY[0], hi = clipY[1];
+          const t0 = y1 === y2 ? (y1 > lo && y1 < hi ? [0, 1] : null) : (() => {
+            let a = (lo - y1) / (y2 - y1), b = (hi - y1) / (y2 - y1); if (a > b) [a, b] = [b, a];
+            a = Math.max(0, a); b = Math.min(1, b); return a < b ? [a, b] : null;
+          })();
+          if (!t0) continue;
+          const P = t => [bx + x1 + (x2 - x1) * t, y1 + (y2 - y1) * t];
+          const [ax, ay] = P(t0[0]), [cx, cy] = P(t0[1]);
+          lines += `<line x1="${ox + ax * sc}" y1="${oy + ay * sy}" x2="${ox + cx * sc}" y2="${oy + cy * sy}" stroke="#bcd3ff" stroke-width="1.6" opacity=".75"/>`;
+        }
+        path.forEach(([x, y]) => { if (y > clipY[0] && y < clipY[1]) stars += `<circle class="twk" cx="${ox + (bx + x) * sc}" cy="${oy + y * sy}" r="3.2" fill="#fff"/>`; });
+      });
+    });
+    const W = ox * 2 + (word.length * (4 + gap) - gap) * sc;
+    const y0 = top ? 0 : oy + CUT * sy, y1 = top ? oy + CUT * sy : oy * 2 + 6 * sy;
+    let noise = '';
+    for (let i = 0; i < 70; i++) noise += `<circle cx="${(i * 89) % W}" cy="${y0 + ((i * 47) % Math.max(1, (y1 - y0)))}" r="${0.6 + (i % 3) * 0.4}" fill="#fff" opacity="${0.25 + (i % 4) * 0.12}"/>`;
+    return `<div class="scroll-x"><svg viewBox="0 ${y0} ${W} ${y1 - y0}" style="width:100%;min-width:640px;display:block;background:linear-gradient(${top ? '180deg,#0a0d2a,#1d1a45' : '180deg,#1d1a45,#2a1640'})">${noise}${lines}${stars}</svg></div>`;
+  }
+  STAGES.stars = {
+    title: 'Derselbe Himmel', when: 'September · die erste Nacht getrennt', icon: '🌌',
+    story: `<p>Die erste Nacht getrennt. Lauri in Frankfurt, Noah in Alicante, und beide haben in den Himmel geschaut. 🌌
+      Dort stand ein Sternbild, das man nur zu zweit lesen kann: Noah sieht von Alicante aus nur die <b>obere</b> Hälfte, Lauri von Frankfurt aus nur die <b>untere</b>.</p>`,
+    p1(el) {
+      el.innerHTML = `
+        <div class="you">Du stehst nachts <b>in Alicante</b> auf dem Balkon und siehst die <b>obere Hälfte</b> des Sternbilds.</div>
+        <div class="card" style="padding:0;overflow:hidden;border-radius:14px">${skyHalf('SEHNSUCHT', true)}
+          <div style="height:10px;background:linear-gradient(90deg,#2b6f9e,#1f4f72)"></div></div>
+        <p class="muted small center" style="margin-top:8px">Unten verschwindet alles hinter dem Horizont. Den Rest sieht Lauri. (Auf dem Handy seitlich wischen.)</p>
+        <div class="waitnote">Lauri gibt das Wort ein.</div>`;
+    },
+    p2(el, api) {
+      el.innerHTML = `
+        <div class="you">Du stehst nachts <b>in Frankfurt</b> am Fenster und siehst die <b>untere Hälfte</b> des Sternbilds.</div>
+        <div class="card" style="padding:0;overflow:hidden;border-radius:14px"><div style="height:10px;background:#3a2f4a"></div>${skyHalf('SEHNSUCHT', false)}
+          <div style="height:26px;background:#1a1420"></div></div>
+        <p class="muted small center" style="margin-top:8px">Oben hängt eine Wolke über Frankfurt. Den oberen Teil sieht Noah. (Auf dem Handy seitlich wischen ↔)</p>
+        <h3 style="margin-top:16px">Was steht am Himmel?</h3>`;
+      api.answer(el, 'Ein Wort …');
+    }
+  };
+
+  // Reihenfolge der Kapitel (Index = Kapitelnummer im Spiel)
+  const ORDER = [0, 1, 'dice', 2, 3, 4, 5, 6, 7, 8, 'grille', 9, 'stars', 10, 11, 12];
+  const N = ORDER.length - 1;
+
   function makeApi(n) {
+    const key = ORDER[n];
     const api = {
       solve() {
         if (S.stage === n) {
@@ -816,7 +976,7 @@
           e.preventDefault();
           const v = norm($('input', f).value);
           if (!v) return;
-          if ((D.answers[n] || []).includes(v)) { api.solve(); }
+          if ((D.answers[key] || []).includes(v)) { api.solve(); }
           else {
             sndBad(); f.classList.remove('shake'); void f.offsetWidth; f.classList.add('shake');
             $('.msg', f).className = 'msg bad'; $('.msg', f).textContent = 'Leider nicht richtig. Redet nochmal miteinander. 💬';
@@ -836,7 +996,7 @@
           const k = b.textContent;
           if (k === '⌫') code = code.slice(0, -1);
           else if (k === '✔') {
-            if ((D.answers[n] || []).includes(code)) { sndOk(); onOk ? onOk() : api.solve(); }
+            if ((D.answers[key] || []).includes(code)) { sndOk(); onOk ? onOk() : api.solve(); }
             else { sndBad(); disp.textContent = 'FALSCH'; disp.classList.add('bad'); code = ''; setTimeout(show, 900); return; }
           } else if (code.length < len) code += k;
           beep([700], 0.04, 'square', 0.04);
@@ -930,7 +1090,7 @@
       <div class="timer" id="timer"></div>
       <div class="status" id="status"></div>
       <button class="menu-btn" id="menu">☰</button>
-    </div><div class="progress"><div id="prog" style="width:${Math.min(100, (S.stage - 1) / 12 * 100)}%"></div></div>`;
+    </div><div class="progress"><div id="prog" style="width:${Math.min(100, (S.stage - 1) / N * 100)}%"></div></div>`;
   }
 
   function updateStatus() {
@@ -946,7 +1106,7 @@
 
   function hintsPanel(n) {
     const lvl = get('hint/' + n, 0);
-    const H = D.hints[n] || [];
+    const H = D.hints[ORDER[n]] || [];
     const labels = ['Tipp 1', 'Tipp 2', 'Lösung'];
     let s = `<div class="card hints"><h3>💡 Tipps</h3><p class="small muted" style="margin-top:0">Tipps sieht ihr beide. Erst probieren, dann nachschauen!</p>`;
     for (let i = 0; i < lvl && i < 3; i++) s += `<div class="hint ${i === 2 ? 'sol' : ''}"><div class="lbl">${labels[i]}</div>${H[i]}</div>`;
@@ -959,12 +1119,12 @@
     runCleanups();
     S.shownStage = S.stage;
     const n = S.stage;
-    if (n >= 13) return renderFinale();
+    if (n > N) return renderFinale();
     if (n === 0) return renderLobby();
-    const st = STAGES[n];
+    const st = STAGES[ORDER[n]];
     app.innerHTML = topbar() + `
       <div class="wrap">
-        <div class="chapter"><span class="k">${st.k} von 12</span><h2>${st.title}</h2></div>
+        <div class="chapter"><span class="k">Kapitel ${n} von ${N}</span><h2>${st.title}</h2></div>
         <div class="when">${st.when}</div>
         <div class="grid">
           <div>
@@ -993,7 +1153,7 @@
   }
   function refreshHints() {
     const side = $('#side');
-    if (!side || S.stage < 1 || S.stage > 12) return;
+    if (!side || S.stage < 1 || S.stage > N) return;
     const first = side.firstElementChild;
     const tmp = document.createElement('div'); tmp.innerHTML = hintsPanel(S.stage);
     side.replaceChild(tmp.firstElementChild, first);
@@ -1064,7 +1224,7 @@
   function renderFinale() {
     if (!get('finish', 0)) set('finish', Date.now());
     const t0 = get('start', 0), t1 = get('finish', Date.now());
-    let hints = 0; for (let i = 1; i <= 12; i++) hints += get('hint/' + i, 0);
+    let hints = 0; for (let i = 1; i <= N; i++) hints += get('hint/' + i, 0);
     app.innerHTML = `
       <div class="finale">
         <p class="muted" style="letter-spacing:.14em;text-transform:uppercase;font-size:.8rem">Fall gelöst</p>
@@ -1103,17 +1263,17 @@
 
   // Zwischensequenz nach einem gelösten Kapitel (n) bzw. vor dem Start (0)
   // Welche Szenen nach welchem Kapitel laufen (0 = vor dem Start)
-  const TRANS = { 0: [0, 'beach'] };
+  const TRANS = { 0: [0, 'beach'], 1: ['spieleabend'], dice: [1], grille: ['brief'], stars: ['himmel'] };
   function showSolved(n, then) {
-    const st = STAGES[n];
-    if (!window.Scenes || !Scenes.has(n)) return then();
+    const sk = ORDER[n];
+    const list = TRANS[sk] || [sk];
+    if (!window.Scenes || !list.every(Scenes.has)) return then();
     if (n > 0) sndOk();
-    const list = TRANS[n] || [n];
-    const head = n === 0 ? 'Prolog' : n === 12 ? 'Fall gelöst' : '✓ ' + st.k + ' gelöst';
+    const head = n === 0 ? 'Prolog' : n === N ? 'Fall gelöst' : '✓ Kapitel ' + n + ' gelöst';
     const show = i => {
       const last = i === list.length - 1;
       showModal(`<p class="sub-ok">${head}</p>${Scenes.html(list[i])}
-        <button class="btn gold" id="next">${!last ? 'Weiter →' : n === 0 ? 'Los geht\'s →' : n === 12 ? 'Zur Pik Dame →' : 'Weiter →'}</button>`, true);
+        <button class="btn gold" id="next">${!last ? 'Weiter →' : n === 0 ? 'Los geht\'s →' : n === N ? 'Zur Pik Dame →' : 'Weiter →'}</button>`, true);
       $('#next').onclick = () => { if (last) { hideModal(); then(); } else show(i + 1); };
     };
     show(0);

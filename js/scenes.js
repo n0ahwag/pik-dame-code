@@ -198,6 +198,40 @@
         <text x="96" y="122" font-size="20" class="tear">💧</text>
         <path d="M200,230 Q380,60 560,40" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="6 8" opacity=".7" class="dash"/>`
     },
+    spieleabend: {
+      cap: 'Abends: Spieleabend. Und irgendwie saßen die zwei dann doch nebeneinander. 🎲',
+      svg: () => `<rect width="600" height="340" fill="#2a1a24"/><rect x="0" y="0" width="600" height="60" fill="#3a2430"/>
+        <circle cx="300" cy="40" r="16" fill="#ffd76b" opacity=".9"/><polygon points="270,50 330,50 380,140 220,140" fill="#ffd76b" opacity=".12"/>
+        ${actor('noah', 230, 300, { pose: 'cheer', anim: 'hop .9s 1.2s ease-in-out 2' })}${actor('lauri', 370, 300, { pose: 'cheer', flip: true, anim: 'hop .9s 1.3s ease-in-out 2' })}
+        <rect x="140" y="230" width="320" height="18" rx="4" fill="#7a5233"/><rect x="160" y="248" width="12" height="70" fill="#5e3e26"/><rect x="428" y="248" width="12" height="70" fill="#5e3e26"/>
+        <g class="die1"><rect x="-12" y="-12" width="24" height="24" rx="5" fill="#d8323f"/><circle cx="-5" cy="-5" r="2.4" fill="#fff"/><circle cx="5" cy="5" r="2.4" fill="#fff"/></g>
+        <g class="die2"><rect x="-12" y="-12" width="24" height="24" rx="5" fill="#2563eb"/><circle cx="0" cy="0" r="2.6" fill="#fff"/><circle cx="-6" cy="-6" r="2.4" fill="#fff"/><circle cx="6" cy="6" r="2.4" fill="#fff"/></g>
+        <g style="transform:translate(470px,190px)"><text font-size="30">👼</text><text x="34" y="-4" font-size="13" font-family="Inter" font-weight="700" fill="#f3e9df">Luis</text></g>
+        ${heart(300, 170, 1.5, 2.2)}`
+    },
+    brief: {
+      cap: '„Ich zähle die Tage, bis wir uns wiedersehen.“ 💌',
+      svg: () => `${sky('#ffcf9e', '#ffe9d2')}
+        <g class="env"><rect x="-80" y="-50" width="160" height="100" rx="6" fill="#fff" stroke="#e2c9a6" stroke-width="2"/>
+          <path d="M-80,-50 L0,10 L80,-50" fill="none" stroke="#e2c9a6" stroke-width="2"/>
+          <path d="M0,6 C-12,-4 -16,-12 -9,-16 C-4,-18 0,-15 0,-12 C0,-15 4,-18 9,-16 C16,-12 12,-4 0,6 Z" fill="#d8323f" transform="translate(0,22) scale(1.4)"/></g>
+        ${actor('lauri', 130, 320, { pose: 'waving' })}${actor('noah', 470, 320, { pose: 'cheer', flip: true })}
+        ${heart(300, 120, 1.2, 2.6)}${heart(260, 140, 1, 3)}${heart(340, 150, 1.1, 3.3)}`
+    },
+    himmel: {
+      cap: 'Frankfurt & Alicante. 1.500 km, aber derselbe Himmel. 🌙',
+      svg: () => `<rect width="600" height="340" fill="#0b0f2e"/>${stars(70)}
+        <circle cx="300" cy="80" r="34" fill="#f4efd0"/><circle cx="314" cy="72" r="30" fill="#0b0f2e"/>
+        <line class="shoot" x1="0" y1="0" x2="60" y2="20" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <rect x="0" y="250" width="290" height="90" fill="#1d1a2b"/><rect x="310" y="250" width="290" height="90" fill="#1f3b52"/>
+        ${[20, 90, 180].map(x => `<rect x="${x}" y="190" width="60" height="60" fill="#2a2440"/><rect x="${x + 10}" y="205" width="10" height="12" fill="#ffd76b" opacity=".6"/>`).join('')}
+        <path d="M330,250 L360,200 L390,250 Z M420,250 L460,190 L500,250Z" fill="#2b4a63"/>
+        <text x="145" y="330" text-anchor="middle" font-size="13" font-family="Inter" font-weight="700" fill="#f3e9df">Frankfurt</text>
+        <text x="455" y="330" text-anchor="middle" font-size="13" font-family="Inter" font-weight="700" fill="#f3e9df">Alicante</text>
+        ${actor('lauri', 200, 300, { pose: 'phone' })}${actor('noah', 400, 300, { pose: 'phone', flip: true })}
+        <path d="M215,170 Q300,110 385,170" fill="none" stroke="#d9ad5b" stroke-width="2" stroke-dasharray="6 6" class="dash"/>
+        ${heart(300, 140, 1.4, 1.6)}`
+    },
     10: {
       cap: '6. September. Ding Dong: Überraschung! 💐',
       svg: () => `${sky('#ffe3b8', '#fff4dc')}<rect x="200" y="60" width="200" height="260" fill="#e8d2b0"/><rect y="300" width="600" height="40" fill="#c8a982"/>
@@ -300,6 +334,10 @@
   .steam{animation:note 2s ease-out infinite}
   .car{animation:car 3.4s cubic-bezier(.3,.7,.4,1) both} @keyframes car{from{transform:translateX(-300px)}to{transform:translateX(150px)}}
   .lane{stroke-dasharray:0}
+  .die1{animation:die1 1.4s ease-out both} @keyframes die1{from{transform:translate(260px,150px) rotate(0)}to{transform:translate(285px,222px) rotate(540deg)}}
+  .die2{animation:die2 1.4s .2s ease-out both} @keyframes die2{from{transform:translate(340px,150px) rotate(0)}to{transform:translate(318px,222px) rotate(-450deg)}}
+  .env{animation:env 2.6s ease-in-out both} @keyframes env{0%{transform:translate(130px,220px) scale(.3) rotate(-20deg)}60%{transform:translate(300px,110px) scale(1) rotate(5deg)}100%{transform:translate(300px,150px) scale(1) rotate(0)}}
+  .shoot{animation:shoot 3s 1s ease-in infinite;opacity:0} @keyframes shoot{0%{transform:translate(80px,30px);opacity:0}10%{opacity:1}40%{transform:translate(260px,90px);opacity:0}100%{opacity:0}}
   .scap{font-family:Caveat,cursive;font-size:1.7rem;line-height:1.15;margin:14px 0 6px;min-height:2.2em}
   .scap span{opacity:0;animation:fadein .05s forwards}
   @keyframes fadein{to{opacity:1}}
