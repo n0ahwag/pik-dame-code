@@ -92,7 +92,7 @@
         ${heart(300, 120, 1.3, 1.2)}`
     },
     1: {
-      cap: 'Am Tag danach: Lauri am Steuer. Erst zu Luis vortrinken, dann ins Pik Dame! 🚗🎶',
+      cap: 'Am Tag danach: Lauri am Steuer ihres schwarzen Mercedes. Erst zu Luis vortrinken, dann ins Pik Dame! 🚗🎶',
       svg: () => `${sky('#ff9e7a', '#5a2a5a')}${stars(12)}
         ${[[20, 150, 70], [100, 120, 60], [170, 170, 50], [430, 140, 60], [500, 110, 80]].map(([x, y, w]) => `<rect x="${x}" y="${y}" width="${w}" height="${270 - y}" fill="#2a1a33"/><rect x="${x + 10}" y="${y + 15}" width="10" height="12" fill="#ffd76b" opacity=".6"/><rect x="${x + w - 22}" y="${y + 40}" width="10" height="12" fill="#ffd76b" opacity=".45"/>`).join('')}
         <rect x="380" y="150" width="90" height="120" fill="#3a2f4a"/><text x="425" y="185" text-anchor="middle" font-size="13" fill="#fff" font-family="Inter" font-weight="700">LUIS</text>
@@ -101,10 +101,10 @@
         <g class="car"><g style="transform:translate(0,0)">
           <g style="transform:translate(100px,262px) scale(.62)">${person('noah', { pose: '' })}</g>
           <g style="transform:translate(172px,262px) scale(.62)">${person('lauri', { pose: '' })}</g>
-          <path d="M40,250 L70,212 Q80,200 100,200 L190,200 Q208,200 220,214 L248,250 Z" fill="none" stroke="#c22c3c" stroke-width="7"/>
-          <line x1="140" y1="200" x2="140" y2="250" stroke="#c22c3c" stroke-width="6"/>
+          <path d="M40,250 L70,212 Q80,200 100,200 L190,200 Q208,200 220,214 L248,250 Z" fill="rgba(160,190,220,.25)" stroke="#111114" stroke-width="7"/>
+          <line x1="140" y1="200" x2="140" y2="250" stroke="#111114" stroke-width="6"/>
           <circle cx="196" cy="236" r="9" fill="none" stroke="#222" stroke-width="3"/>
-          <rect x="20" y="246" width="250" height="40" rx="14" fill="#d8323f"/><rect x="30" y="256" width="40" height="6" rx="3" fill="#fff" opacity=".5"/>
+          <rect x="14" y="246" width="266" height="40" rx="14" fill="#141418"/><path d="M24,258 H270" stroke="#c9ccd4" stroke-width="2" opacity=".8"/><rect x="30" y="252" width="60" height="4" rx="2" fill="#fff" opacity=".18"/><rect x="268" y="270" width="14" height="6" rx="2" fill="#c9ccd4"/>
           <circle cx="266" cy="262" r="6" fill="#ffe7a0"/>
           <circle cx="75" cy="288" r="17" fill="#222"/><circle cx="75" cy="288" r="7" fill="#999"/><circle cx="220" cy="288" r="17" fill="#222"/><circle cx="220" cy="288" r="7" fill="#999"/>
           <text x="145" y="276" text-anchor="middle" font-size="11" font-family="Inter" font-weight="700" fill="#fff">+ Luis & Freundin an Bord</text>
