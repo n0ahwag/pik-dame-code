@@ -5,7 +5,7 @@
 
 window.NACHRICHT = `Liebe Lauri,
 
-vier Monate. Angefangen hat es mit einem Volleyball, einem Freund mit einem Plan und einer Nacht im Pik Dame. Seitdem bist du die wichtigste Karte in meinem Spiel.
+vier Monate. Angefangen hat es mit Beachvolleyball, einem Freund mit einem Plan und einer Nacht im Pik Dame. Seitdem bist du die wichtigste Karte in meinem Spiel.
 
 Auch wenn gerade ein paar hundert Kilometer zwischen uns liegen: Du hast heute bewiesen, dass wir zusammen jedes Rätsel lösen.
 

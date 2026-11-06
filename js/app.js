@@ -128,42 +128,43 @@
   const STAGES = {};
 
   STAGES[1] = {
-    k: 'Kapitel 1', title: 'Luis\' Masterplan', when: 'April · Volleyball', icon: '🏐',
-    cap: 'April, Volleyball. Luis\' Plan ist aufgegangen.',
-    story: `<p>Alles begann in einer Turnhalle. Ich hatte da so eine Idee: Wenn ich euch zwei geschickt aufstelle, stehen
-      ihr irgendwann zusammen vorne am Netz. Und genau dann rufe ich <b>Time-out</b> und stelle euch einander vor. 😏</p>
+    k: 'Kapitel 1', title: 'Luis\' Masterplan', when: 'April · Beachvolleyball', icon: '🏐',
+    cap: 'April, Beachvolleyball. Luis\' Plan ist aufgegangen.',
+    story: `<p>Alles begann im Sand, beim Beachvolleyball. Ich war Schiri und hatte einen Plan: Ihr zwei spielt zusammen in einem Team,
+      und im richtigen Moment rufe ich <b>Time-out</b>, damit ihr euch endlich mal richtig unterhaltet. 😏</p>
       <p>Aber bei welchem Spielstand war es so weit?</p>`,
     p2(el) {
       el.innerHTML = `
-        <div class="you">Du hast <b>Luis' Whiteboard</b> mit der Startaufstellung eures Teams.</div>
+        <div class="you">Du hast <b>Luis' Notizzettel</b> mit den Regeln und seinem Plan.</div>
         <div class="paper">
-          <h3>Startaufstellung</h3>
-          <svg viewBox="0 0 360 330" style="width:100%;max-width:420px;display:block;margin:0 auto">
-            <rect x="30" y="40" width="300" height="250" fill="#e9a35b" stroke="#fff" stroke-width="4"/>
-            <line x1="30" y1="123" x2="330" y2="123" stroke="#fff" stroke-width="3"/>
-            <rect x="20" y="30" width="320" height="10" fill="#222"/>
-            <text x="180" y="24" text-anchor="middle" font-size="14" font-family="Inter" fill="#2a1d16" font-weight="700">NETZ</text>
-            ${[[80, 85, '?'], [180, 85, 'Luis'], [280, 85, '?'], [80, 215, '?'], [180, 215, 'Lauri'], [280, 215, 'Noah']].map(([x, y, n]) =>
-              `<circle cx="${x}" cy="${y}" r="30" fill="${n === '?' ? '#fff' : n === 'Luis' ? '#2a1d16' : '#d11f3c'}" stroke="#2a1d16" stroke-width="2"/>
-               <text x="${x}" y="${y + 5}" text-anchor="middle" font-size="${n === '?' ? 20 : 14}" font-weight="700" font-family="Inter" fill="${n === '?' ? '#2a1d16' : '#fff'}">${n}</text>`).join('')}
-            <text x="330" y="314" text-anchor="end" font-size="13" font-family="Inter" fill="#2a1d16">↻ Rotation im Uhrzeigersinn</text>
+          <svg viewBox="0 0 360 200" style="width:100%;max-width:440px;display:block;margin:0 auto 6px">
+            <rect width="360" height="200" rx="10" fill="#f3d9a4"/>
+            <rect x="30" y="30" width="300" height="140" fill="#ecc27a" stroke="#fff" stroke-width="4"/>
+            <line x1="180" y1="18" x2="180" y2="182" stroke="#222" stroke-width="5"/>
+            <text x="180" y="14" text-anchor="middle" font-size="12" font-family="Inter" font-weight="700" fill="#2a1d16">NETZ</text>
+            ${[[90, 70, 'Noah', '#d11f3c'], [90, 130, 'Lauri', '#d11f3c'], [270, 70, '?', '#fff'], [270, 130, '?', '#fff']].map(([x, y, n, c]) =>
+              `<circle cx="${x}" cy="${y}" r="24" fill="${c}" stroke="#2a1d16" stroke-width="2"/><text x="${x}" y="${y + 5}" text-anchor="middle" font-size="${n === '?' ? 18 : 12}" font-weight="700" font-family="Inter" fill="${n === '?' ? '#2a1d16' : '#fff'}">${n}</text>`).join('')}
+            <text x="90" y="192" text-anchor="middle" font-size="11" font-family="Inter" fill="#2a1d16">Wir</text>
+            <text x="270" y="192" text-anchor="middle" font-size="11" font-family="Inter" fill="#2a1d16">Gegner</text>
+            <text x="345" y="110" font-size="22" text-anchor="end">☀️</text>
           </svg>
-          <p class="hand" style="font-size:1.4rem;margin:.4em 0 0">Wir rotieren nur, wenn wir dem Gegner den Aufschlag abnehmen.
-          Dann rückt jeder eine Position weiter, <u>im Uhrzeigersinn</u>.</p>
-          <p class="hand" style="font-size:1.4rem;margin:.2em 0 0">Sobald N. &amp; L. beide vorne am Netz direkt nebeneinander stehen: TIME-OUT! 😏</p>
+          <p class="hand" style="font-size:1.35rem;line-height:1.25;margin:.3em 0">Beach-Regeln (für Noah, der hat keine Ahnung 😅):<br>
+          • Holt sich ein Team den Aufschlag zurück, schlägt der Spieler auf, der beim letzten Mal <u>nicht</u> dran war.<br>
+          • Bei uns schlägt Noah als Erster auf.<br>
+          • Alle 7 Punkte (beide Teams zusammengezählt) wird die Seite gewechselt.</p>
+          <p class="hand" style="font-size:1.45rem;line-height:1.25;margin:.4em 0 0"><b>Mein Plan:</b> Beim ersten Seitenwechsel, nach dem <u>Lauri</u> aufschlagen darf, rufe ich TIME-OUT! 😏</p>
         </div>
         <div class="waitnote">Noah hat den Spielbericht und gibt die Lösung ein.</div>`;
     },
     p1(el, api) {
-      const seq = 'GGWWGWWWGGGGWWGWWGWG'.split('');
-      let w = 0, g = 0;
+      const seq = 'GWWGWGWWGGGWWGWWGGWWWWGG'.split('');
       el.innerHTML = `
-        <div class="you">Du hast den <b>Spielbericht</b> des Satzes. Lauri hat Luis' Whiteboard mit der Aufstellung.</div>
+        <div class="you">Du hast den <b>Spielbericht</b> des Satzes. Lauri hat Luis' Zettel mit den Regeln.</div>
         <div class="paper">
-          <h3>Spielbericht · 1. Satz</h3>
-          <p class="small" style="margin-top:0">Den ersten Aufschlag hatte der <b>Gegner</b>. Wer einen Ballwechsel gewinnt, schlägt als Nächstes auf.</p>
-          <div class="scroll-x"><table class="score"><tr><th>Ballwechsel</th>${seq.map((_, i) => `<th>${i + 1}</th>`).join('')}</tr>
-          <tr><td><b>Punkt für</b></td>${seq.map(p => `<td style="font-weight:700;color:${p === 'W' ? '#c8102e' : '#555'}">${p === 'W' ? 'Wir' : 'Geg.'}</td>`).join('')}</tr></table></div>
+          <h3>Spielbericht · Beach, 1. Satz</h3>
+          <p class="small" style="margin-top:0">Den ersten Aufschlag hatte der <b>Gegner</b>. Wer einen Ballwechsel gewinnt, hat den nächsten Aufschlag.</p>
+          <div class="scroll-x"><table class="score"><tr><th>Nr.</th>${seq.map((_, i) => `<th>${i + 1}</th>`).join('')}</tr>
+          <tr><td><b>Punkt</b></td>${seq.map(p => `<td style="font-weight:700;color:${p === 'W' ? '#c8102e' : '#555'}">${p === 'W' ? 'Wir' : 'Geg.'}</td>`).join('')}</tr></table></div>
         </div>
         <h3 style="margin-top:18px">Bei welchem Spielstand rief Luis „Time-out“?</h3>
         <p class="muted small">Format: Wir : Gegner, also zum Beispiel 3:5</p>`;
@@ -174,7 +175,7 @@
   STAGES[2] = {
     k: 'Kapitel 2', title: 'Die Tanzfläche', when: 'Dieselbe Nacht · Club Pik Dame', icon: '♠',
     cap: 'Pik Dame. Die Tanzfläche gehörte euch.',
-    story: `<p>Nach dem Volleyball sind wir weitergezogen, ins <b>Pik Dame</b>. Der DJ dort ist eigen: Er legt erst auf,
+    story: `<p>Nach dem Beachvolleyball sind wir weitergezogen, ins <b>Pik Dame</b>. Der DJ dort ist eigen: Er legt erst auf,
       wenn die Tanzfläche das Zeichen des Clubs zeigt.</p>`,
     p1(el, api) {
       el.innerHTML = `
@@ -349,7 +350,7 @@
         ['Mittwoch'],
         ['l', '20:47', 'Hey, hier ist Noah 🙈 Luis hat mir deinen Insta gegeben, ich hoffe, das ist okay'],
         ['r', '21:19', 'Haha klar ist das okay 😄'],
-        ['l', '21:52', 'War echt ein schöner Abend. Auch wenn mein Aufschlag peinlich war'],
+        ['l', '21:52', 'War echt ein schöner Abend. Auch wenn mein Aufschlag im Sand peinlich war'],
         ['r', '22:16', 'Dein Aufschlag war … kreativ 😂'],
         ['l', '22:33', 'Autsch. Ich trainiere noch'],
         ['r', '23:01', 'Ich bin gespannt 😏 Gute Nacht!'],
@@ -775,7 +776,7 @@
         <div class="paper">
           <p class="hand" style="font-size:1.6rem;line-height:1.25;margin:0">Noah,<br>
           mein Job als Amor war an einem ganz bestimmten Tag offiziell erledigt: an dem Tag, an dem aus
-          „die vom Volleyball“ <i>deine Freundin</i> wurde. Genau dieser Tag öffnet den Tresor.<br>
+          „die vom Beachvolleyball“ <i>deine Freundin</i> wurde. Genau dieser Tag öffnet den Tresor.<br>
           Vier Ziffern: Tag und Monat.<br><br>– Luis ♠</p>
         </div>
         <div id="holdzone"></div>`;
@@ -1030,7 +1031,7 @@
           <p>Ihr wisst ja: Ohne mich wärt ihr heute nicht hier. 😏 Ich habe alles aufgeschrieben, von Anfang an, in meiner geheimen Akte.
           Darin habe ich auch die wertvollste Karte des ganzen Spiels versteckt: <b>die Pik Dame</b>.</p>
           <p>Leider ist die Akte ziemlich durcheinandergeraten, und die Pik Dame ist verschwunden. Um sie zu finden, müsst ihr eure Geschichte
-          noch einmal erleben, Kapitel für Kapitel, vom ersten Volleyball bis heute.</p>
+          noch einmal erleben, Kapitel für Kapitel, vom ersten Beachvolleyball bis heute.</p>
           <p>Die Sache hat einen Haken: <b>Jeder von euch sieht nur die Hälfte.</b> Ihr müsst also beschreiben, zuhören und zusammen tüfteln.
           Das könnt ihr ja inzwischen ziemlich gut, auch über ein paar hundert Kilometer. ♠</p>
           <p>Viel Glück!<br>– Luis</p>
@@ -1070,7 +1071,7 @@
         <div class="qcard"><div class="in"><div class="b"></div><div class="f"><div class="c1">D<br>♠</div><div class="q">♠</div><div class="nm">Lauri</div><div class="small" style="color:#888">die wertvollste Karte</div><div class="c2">D<br>♠</div></div></div></div>
         <div class="story" style="text-align:left"><div class="from">Aus Luis' geheimer Akte · letzte Seite</div>
           <p>Die Pik Dame war nie verschwunden. Sie saß die ganze Zeit am anderen Ende der Leitung. 😉
-          Volleyball, Pik Dame, die Nacht bei mir, die erste Nachricht, Preungesheim, Bornheim, Oberursel, der Abschied,
+          Beachvolleyball, Pik Dame, die Nacht bei mir, die erste Nachricht, Preungesheim, Bornheim, Oberursel, der Abschied,
           die Überraschung, Valencia, und heute vier Monate. Ich würde sagen: Mission Amor erfüllt. ♠❤️</p></div>
         <div class="stats"><div>Zeit<b>${t0 ? fmtTime(t1 - t0) : '–'}</b></div><div>Tipps genutzt<b>${hints}</b></div><div>Monate<b>4</b></div></div>
         <div class="letter">${String(window.NACHRICHT || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]))}</div>
@@ -1096,16 +1097,17 @@
     addCleanup(() => clearInterval(iv));
   }
 
-  function showModal(html) { const o = $('#overlay'); o.innerHTML = `<div class="modal">${html}</div>`; o.hidden = false; }
+  function showModal(html, wide) { const o = $('#overlay'); o.innerHTML = `<div class="modal ${wide ? 'wide' : ''}">${html}</div>`; o.hidden = false; }
   function hideModal() { const o = $('#overlay'); o.hidden = true; o.innerHTML = ''; }
 
+  // Zwischensequenz nach einem gelösten Kapitel (n) bzw. vor dem Start (0)
   function showSolved(n, then) {
     const st = STAGES[n];
-    if (!st || !st.cap) return then();
-    sndOk();
-    showModal(`<div class="polaroid"><div class="img">${st.icon}</div><div class="cap">${st.cap}</div></div>
-      <h3>✓ ${st.k} gelöst!</h3><p class="muted small">${n < 12 ? 'Weiter geht\'s mit dem nächsten Kapitel.' : ''}</p>
-      <button class="btn gold" id="next">Weiter →</button>`);
+    if (!window.Scenes || !Scenes.has(n)) return then();
+    if (n > 0) sndOk();
+    const head = n === 0 ? 'Prolog' : n === 12 ? 'Fall gelöst' : '✓ ' + st.k + ' gelöst';
+    showModal(`<p class="sub-ok">${head}</p>${Scenes.html(n)}
+      <button class="btn gold" id="next">${n === 0 ? 'Los geht\'s →' : n === 12 ? 'Zur Pik Dame →' : 'Weiter →'}</button>`, true);
     $('#next').onclick = () => { hideModal(); then(); };
   }
 
@@ -1123,7 +1125,7 @@
       if (typeof v === 'number' && v > S.stage) {
         const prev = S.stage;
         S.stage = v;
-        if (prev >= 1 && v === prev + 1 && S.shownStage === prev) showSolved(prev, renderGame);
+        if (prev >= 0 && v === prev + 1 && S.shownStage === prev) showSolved(prev, renderGame);
         else { hideModal(); renderGame(); }
       }
       return;
