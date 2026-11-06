@@ -1,14 +1,6 @@
-// ✍️ NOAHS NACHRICHT AN LAURI
-// Diese Datei verrät keine Lösungen, du kannst sie also ohne Spoiler bearbeiten.
-// Den Text zwischen den beiden ` ` (Backticks) durch deine eigene Nachricht ersetzen.
-// Zeilenumbrüche sind erlaubt.
+// ✍️ NOAHS NACHRICHT AN LAURI (optional)
+// Diese Datei verrät keine Lösungen.
+// Bleibt der Text leer, wird am Ende keine Nachricht angezeigt.
+// Für eine Nachricht: Text zwischen die beiden ` ` (Backticks) schreiben.
 
-window.NACHRICHT = `Liebe Lauri,
-
-vier Monate. Angefangen hat es mit Beachvolleyball, einem Freund mit einem Plan und einer Nacht im Pik Dame. Seitdem bist du die wichtigste Karte in meinem Spiel.
-
-Auch wenn gerade über 1.500 Kilometer zwischen uns liegen: Du hast heute bewiesen, dass wir zusammen jedes Rätsel lösen.
-
-Alles Liebe zum Monatstag ♠
-
-Dein Noah`;
+window.NACHRICHT = ``;

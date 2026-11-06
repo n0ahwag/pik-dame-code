@@ -11,4 +11,4 @@ Ein Escape Room für zwei, für Lauri & Noah zum Monatstag.
 
 Bitte nicht im Code nach Lösungen suchen. 😉 Für jedes Kapitel gibt es im Spiel drei Tipps.
 
-Die Abschlussnachricht steht in `js/nachricht.js`. Die Datei enthält keine Spoiler.
+Optional: Eine Abschlussnachricht kann in `js/nachricht.js` eingetragen werden (keine Spoiler).

@@ -1236,7 +1236,7 @@
           Beachvolleyball, Pik Dame, die Nacht bei mir, die erste Nachricht, Preungesheim, Bornheim, Oberursel, der Abschied,
           die Überraschung, Alicante und Valencia, und heute vier Monate. Ich würde sagen: Mission Amor erfüllt. ♠❤️</p></div>
         <div class="stats"><div>Zeit<b>${t0 ? fmtTime(t1 - t0) : '–'}</b></div><div>Tipps genutzt<b>${hints}</b></div><div>Monate<b>4</b></div></div>
-        <div class="letter">${String(window.NACHRICHT || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]))}</div>
+        ${String(window.NACHRICHT || '').trim() ? `<div class="letter">${String(window.NACHRICHT).replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]))}</div>` : ''}
         <a class="btn gold" href="https://www.youtube.com/results?search_query=Blumengarten+Gloria" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">🎵 Jetzt euer Lied: „Gloria“ von Blumengarten</a>
         <p class="muted small" style="margin-top:30px">Alles Liebe zum Monatstag, 6. November ♠</p>
       </div>`;
