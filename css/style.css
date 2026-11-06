@@ -110,7 +110,7 @@ input { font: inherit; }
   background: var(--paper); color: var(--ink); border-radius: 10px; padding: 18px 20px;
   box-shadow: 0 16px 32px -20px #000; position: relative;
 }
-.paper.note { background: #fff7b8; transform: rotate(-.6deg); }
+.paper.note { background: #fff7b8; }
 .paper h3 { color: var(--ink); }
 
 .answer { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
